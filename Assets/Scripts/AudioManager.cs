@@ -6,9 +6,16 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-    [Header("Audio Clip")]
+    [Header("Background Music")]
     public AudioClip bgm;
-    public AudioClip sfx;
+
+    [Header("Sound Effects")]
+    public AudioClip pouringSFX;
+    public AudioClip sfx1;
+    public AudioClip sfx2;
+    public AudioClip sfx3;
+    public AudioClip sfx4;
+    public AudioClip sfx5;
 
     private void Start()
     {

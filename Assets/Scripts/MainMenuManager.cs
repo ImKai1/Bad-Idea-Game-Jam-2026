@@ -5,11 +5,13 @@ using UnityEngine.Audio;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public void PlayButton() {
-        SceneManager.LoadScene("KaisPlayground");
+    public void PlayButton()
+    {
+        SceneManager.LoadScene("MainGameplay");
     }
 
-    public void QuitButton () {
+    public void QuitButton()
+    {
         Application.Quit();
     }
 }
