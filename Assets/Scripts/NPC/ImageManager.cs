@@ -1,31 +1,26 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ImageManager : MonoBehaviour
 {
-    [Header ("4 sided or 8 sided?")]
-    public bool Eightsided = false;
-
     [Header("Put in the renderer of the plane")]
     public MeshRenderer rend; //use rend.material to change the image
 
-    [Header("Images")]
-    public Material Front;
-    public Material Rear;
-    public Material Left;
-    public Material Right;
-    [Header ("Only fill these when 8 sided")]
-    public Material FLeft;
-    public Material FRight;
-    public Material RLeft;
-    public Material RRight;
+    [Header("Images (Start Front turning right)")]
+    public List<Material> Images; //Front-Right-...
 
     private Transform player;
+    private float imageAngles;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (Images.Count > 0)
+        {
+            imageAngles = 360f / Images.Count;
+        }
     }
 
     void Update()
@@ -40,35 +35,17 @@ public class ImageManager : MonoBehaviour
 
         float angle = Vector3.SignedAngle(forward, dirToPlayer, Vector3.up);
 
-        if (Eightsided)
+        float shiftedAngle = angle + (imageAngles / 2f);
+
+        if (shiftedAngle < 0f)
         {
-            if (angle > -22.5f && angle <= 22.5f)
-                rend.material = Front;
-            else if (angle > 22.5f && angle <= 67.5f)
-                rend.material = FRight;
-            else if (angle > 67.5f && angle <= 112.5f)
-                rend.material = Right;
-            else if (angle > 112.5f && angle <= 157.5f)
-                rend.material = RRight;
-            else if (angle < -22.5f && angle >= -67.5f)
-                rend.material = FLeft;
-            else if (angle < -67.5f && angle >= -112.5f)
-                rend.material = Left;
-            else if (angle < -112.5f && angle >= -157.5f)
-                rend.material = RLeft;
-            else
-                rend.material = Rear;
+            shiftedAngle += 360f;
         }
-        else
-        {
-            if (angle > -45f && angle <= 45f)
-                rend.material = Front;
-            else if (angle > 45f && angle <= 135f)
-                rend.material = Right;
-            else if (angle < -45f && angle >= -135f)
-                rend.material = Left;
-            else
-                rend.material = Rear;
-        }
+
+        int index = Mathf.FloorToInt(shiftedAngle / imageAngles);
+
+        index = index % Images.Count;
+
+        rend.material = Images[index];
     }
 }
