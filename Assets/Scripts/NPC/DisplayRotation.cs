@@ -12,7 +12,7 @@ public class DisplayRotation : MonoBehaviour
 
     void Update()
     {
-        Quaternion Lookat = Quaternion.LookRotation(new Vector3(player.position.x, 1, player.position.z) - transform.position);
+        Quaternion Lookat = Quaternion.LookRotation(new Vector3(player.position.x, transform.position.y, player.position.z) - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, Lookat, speed * Time.deltaTime);
     }
 }
