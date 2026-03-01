@@ -8,15 +8,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+
 
 #if UNITY_EDITOR
-    using UnityEditor;
+using UnityEditor;
     using System.Net;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
+
+    private GameInput gameInput;
 
     #region Camera Movement Variables
 
@@ -197,6 +201,44 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+
+        gameInput = GameInput.Instance;
+
+        gameInput.OnJumpAction += GameInput_OnJumpAction;
+        gameInput.OnCrouchStarted += GameInput_OnCrouchStarted;
+        gameInput.OnCrouchCanceled += GameInput_OnCrouchCanceled;
+    }
+
+    private void GameInput_OnCrouchCanceled(object sender, EventArgs e)
+    {
+        if (enableCrouch)
+        {
+            if (holdToCrouch) 
+            {
+                // Hold to crouch is enabled and player released crouch key, uncrouch player
+                isCrouched = true;
+                Crouch();
+            }
+            
+        }
+    }
+
+    private void GameInput_OnCrouchStarted(object sender, EventArgs e)
+    {
+
+        if (enableCrouch)
+        {
+            if (holdToCrouch) { isCrouched = false; } // Hold to crouch is enabled and player pressed crouch key, crouch player
+            Crouch();
+        }
+    }
+
+    private void GameInput_OnJumpAction(object sender, EventArgs e)
+    {
+        if (enableJump && isGrounded)
+        {
+            Jump();
+        }
     }
 
     float camRotation;
@@ -208,16 +250,18 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
+            Vector2 mouseInput = gameInput.GetMouseVectorNormalized();
+
+            yaw = transform.localEulerAngles.y + mouseInput.x * mouseSensitivity;
 
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch -= mouseSensitivity * mouseInput.y;
             }
             else
             {
                 // Inverted Y
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch += mouseSensitivity * mouseInput.y;
             }
 
             // Clamp pitch between lookAngle
@@ -324,39 +368,6 @@ public class FirstPersonController : MonoBehaviour
 
         #endregion
 
-        #region Jump
-
-        // Gets input and calls jump method
-        if(enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
-        {
-            Jump();
-        }
-
-        #endregion
-
-        #region Crouch
-
-        if (enableCrouch)
-        {
-            if(Input.GetKeyDown(crouchKey) && !holdToCrouch)
-            {
-                Crouch();
-            }
-            
-            if(Input.GetKeyDown(crouchKey) && holdToCrouch)
-            {
-                isCrouched = false;
-                Crouch();
-            }
-            else if(Input.GetKeyUp(crouchKey) && holdToCrouch)
-            {
-                isCrouched = true;
-                Crouch();
-            }
-        }
-
-        #endregion
-
         CheckGround();
 
         if(canHeadBob)
@@ -372,7 +383,8 @@ public class FirstPersonController : MonoBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+            Vector3 targetVelocity = new Vector3(inputVector.x, 0, inputVector.y);
 
             // Checks if player is walking and isGrounded
             // Will allow head bob
@@ -539,9 +551,8 @@ public class FirstPersonController : MonoBehaviour
             }
             // Applies HeadBob movement
             float velocityMultiplier = rb.linearVelocity.magnitude;
-            Debug.Log(velocityMultiplier);
-            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, 
-                jointOriginalPos.y + Mathf.Sin(timer) * velocityMultiplier * bobAmount.y, 
+            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * velocityMultiplier * bobAmount.x, 
+                jointOriginalPos.y + (Mathf.Sin(timer) * velocityMultiplier) * bobAmount.y, 
                 jointOriginalPos.z + Mathf.Sin(timer) * velocityMultiplier * bobAmount.z);
             
         }
