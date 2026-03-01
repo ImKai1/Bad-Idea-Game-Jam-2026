@@ -48,6 +48,11 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Pause.performed += Pause_performed;
     }
 
+    private void Interact_performed(InputAction.CallbackContext context)
+    {
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
+    }
+
     private void Sprint_canceled(InputAction.CallbackContext context)
     {
         OnSprintCanceled?.Invoke(this, EventArgs.Empty);
@@ -91,11 +96,6 @@ public class GameInput : MonoBehaviour
     private void Pause_performed(InputAction.CallbackContext context)
     {
         OnPauseAction?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVectorNormalized()
