@@ -69,8 +69,8 @@ public class FirstPersonController : MonoBehaviour
     #region Sprint
 
     public bool enableSprint = true;
+    public bool holdToSprint = true;
     public bool unlimitedSprint = false;
-    public KeyCode sprintKey = KeyCode.LeftShift;
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
@@ -87,6 +87,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Internal Variables
     private CanvasGroup sprintBarCG;
+    private bool sprintPressed = false;
     private bool isSprinting = false;
     private float sprintRemaining;
     private float sprintBarWidth;
@@ -99,7 +100,6 @@ public class FirstPersonController : MonoBehaviour
     #region Jump
 
     public bool enableJump = true;
-    public KeyCode jumpKey = KeyCode.Space;
     public float jumpPower = 5f;
 
     // Internal Variables
@@ -111,7 +111,6 @@ public class FirstPersonController : MonoBehaviour
 
     public bool enableCrouch = true;
     public bool holdToCrouch = true;
-    public KeyCode crouchKey = KeyCode.LeftControl;
     public float crouchHeight = .75f;
     public float speedReduction = .5f;
 
@@ -156,7 +155,9 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        if(lockCursor)
+
+        #region Cursor and Crosshair Setup
+        if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -170,6 +171,7 @@ public class FirstPersonController : MonoBehaviour
         {
             crosshairObject.gameObject.SetActive(false);
         }
+        #endregion
 
         #region Sprint Bar
 
@@ -207,6 +209,28 @@ public class FirstPersonController : MonoBehaviour
         gameInput.OnJumpAction += GameInput_OnJumpAction;
         gameInput.OnCrouchStarted += GameInput_OnCrouchStarted;
         gameInput.OnCrouchCanceled += GameInput_OnCrouchCanceled;
+        gameInput.OnSprintStarted += GameInput_OnSprintStarted;
+        gameInput.OnSprintCanceled += GameInput_OnSprintCanceled;
+    }
+
+    private void GameInput_OnSprintCanceled(object sender, EventArgs e)
+    {
+        if (holdToSprint)
+        {
+            sprintPressed = false;
+        }
+    }
+
+    private void GameInput_OnSprintStarted(object sender, EventArgs e)
+    {
+        if (holdToSprint)
+        {
+            sprintPressed = true;
+        }
+        else
+        {
+            sprintPressed = !sprintPressed;
+        }
     }
 
     private void GameInput_OnCrouchCanceled(object sender, EventArgs e)
@@ -250,7 +274,9 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            Vector2 mouseInput = gameInput.GetMouseVectorNormalized();
+            Vector2 mouseInput = gameInput.GetMouseVector();
+            float mouseDampening = 10f;
+            mouseInput = mouseInput / mouseDampening;
 
             yaw = transform.localEulerAngles.y + mouseInput.x * mouseSensitivity;
 
@@ -398,7 +424,7 @@ public class FirstPersonController : MonoBehaviour
             }
 
             // All movement calculations shile sprint is active
-            if (enableSprint && Input.GetKey(sprintKey) && sprintRemaining > 0f && !isSprintCooldown)
+            if (enableSprint && sprintPressed && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
 
@@ -666,8 +692,8 @@ public class FirstPersonController : MonoBehaviour
         fpc.enableSprint = EditorGUILayout.ToggleLeft(new GUIContent("Enable Sprint", "Determines if the player is allowed to sprint."), fpc.enableSprint);
 
         GUI.enabled = fpc.enableSprint;
+        fpc.holdToSprint = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Sprint", "Requires the player to hold the sprint key instead of toggling sprint."), fpc.holdToSprint);
         fpc.unlimitedSprint = EditorGUILayout.ToggleLeft(new GUIContent("Unlimited Sprint", "Determines if 'Sprint Duration' is enabled. Turning this on will allow for unlimited sprint."), fpc.unlimitedSprint);
-        fpc.sprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key is used to sprint."), fpc.sprintKey);
         fpc.sprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player will move while sprinting."), fpc.sprintSpeed, fpc.walkSpeed, 20f);
 
         //GUI.enabled = !fpc.unlimitedSprint;
@@ -722,7 +748,6 @@ public class FirstPersonController : MonoBehaviour
         fpc.enableJump = EditorGUILayout.ToggleLeft(new GUIContent("Enable Jump", "Determines if the player is allowed to jump."), fpc.enableJump);
 
         GUI.enabled = fpc.enableJump;
-        fpc.jumpKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Jump Key", "Determines what key is used to jump."), fpc.jumpKey);
         fpc.jumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player will jump."), fpc.jumpPower, .1f, 20f);
         GUI.enabled = true;
 
@@ -738,7 +763,6 @@ public class FirstPersonController : MonoBehaviour
 
         GUI.enabled = fpc.enableCrouch;
         fpc.holdToCrouch = EditorGUILayout.ToggleLeft(new GUIContent("Hold To Crouch", "Requires the player to hold the crouch key instead if pressing to crouch and uncrouch."), fpc.holdToCrouch);
-        fpc.crouchKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Crouch Key", "Determines what key is used to crouch."), fpc.crouchKey);
         fpc.crouchHeight = EditorGUILayout.Slider(new GUIContent("Crouch Height", "Determines the y scale of the player object when crouched."), fpc.crouchHeight, .1f, 1);
         fpc.speedReduction = EditorGUILayout.Slider(new GUIContent("Speed Reduction", "Determines the percent 'Walk Speed' is reduced by. 1 being no reduction, and .5 being half."), fpc.speedReduction, .1f, 1);
         GUI.enabled = true;
