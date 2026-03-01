@@ -461,16 +461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997b2cb5b9080be468e534dac2ada49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageManager
-  Eightsided: 0
   rend: {fileID: 1480589407}
-  Front: {fileID: 2100000, guid: ad9034644d7bb124eba2aa41e5ff020a, type: 2}
-  Rear: {fileID: 2100000, guid: 0aad6101cbbc5184c89776f9acc94155, type: 2}
-  Left: {fileID: 2100000, guid: ad9034644d7bb124eba2aa41e5ff020a, type: 2}
-  Right: {fileID: 2100000, guid: ad9034644d7bb124eba2aa41e5ff020a, type: 2}
-  FLeft: {fileID: 0}
-  FRight: {fileID: 0}
-  RLeft: {fileID: 0}
-  RRight: {fileID: 0}
+  Images:
+  - {fileID: 2100000, guid: ad9034644d7bb124eba2aa41e5ff020a, type: 2}
+  - {fileID: 2100000, guid: 0aad6101cbbc5184c89776f9acc94155, type: 2}
 --- !u!4 &1119043181
 Transform:
   m_ObjectHideFlags: 0
