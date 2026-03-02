@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class HeroEntity : MonoBehaviour
 {
+    [Header("Decision Variables")] // random values here will let the hero decide what they want to buy
+    [SerializeField] private int _hp;
+    [SerializeField] private int _walkSpeed;
+    [SerializeField] private int _reputation;
+
     [Header("Sprites")]
     [SerializeField] private SpriteRenderer _sHead;
     [SerializeField] private SpriteRenderer _sTorso;
@@ -18,6 +23,24 @@ public class HeroEntity : MonoBehaviour
 
         // keep here
         HeroData.RandomizeHero(this);
+        _hp = Random.Range(1, 100);
+        _walkSpeed = Random.Range(3, 10); // tank vs scout i guess
+        _reputation = Random.Range(-5000, 5000);
+
+        // REPUTATION RANKINGS //
+        /*
+         * 5000     -   Super Awesome Dude
+         * 4000     -   Honorable
+         * 3000     -   Middle Hero
+         * 2000     -   Liked
+         * 1000     -   Nice
+         * 0        -   Neutral
+         * -1000    -   Unkind
+         * -2000    -   Disliked
+         * -3000    -   Scoundrel
+         * -4000    -   Dishonorable
+         * -5000    -   Super Evil
+        */
     }
 
     void Update()

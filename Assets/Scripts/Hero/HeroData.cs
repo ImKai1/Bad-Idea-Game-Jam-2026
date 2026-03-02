@@ -5,11 +5,6 @@ using System.Linq;
 
 public class HeroData
 {
-    [Header("Decision Variables")] // random values here will let the hero decide what they want to buy
-    [SerializeField] private int hp;
-    [SerializeField] private int walkSpeed;
-    [SerializeField] private int reputation;
-
     [Header("Visual Data")] // what the fella looks like
     [SerializeField] private static List<Sprite> _sHeadArr = new List<Sprite>();
     [SerializeField] private static List<Sprite> _sTorsoArr = new List<Sprite>();
