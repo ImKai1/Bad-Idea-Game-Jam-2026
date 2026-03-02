@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene("MainGameplay");
+        SceneManager.LoadScene("KaisPlayground");
     }
 
     public void QuitButton()
