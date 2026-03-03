@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class HeroEntity : MonoBehaviour
+public class AdventurerEntity : MonoBehaviour
 {
     [Header("Decision Variables")] // random values here will let the hero decide what they want to buy
     [SerializeField] private int _hp;
@@ -16,16 +17,25 @@ public class HeroEntity : MonoBehaviour
     [SerializeField] private SpriteRenderer _sFeet;
     [SerializeField] private SpriteRenderer _sNeck; // for jewlery and such "amulet of bleebleborp" or smth
 
+    [Header("References")]
+    [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private NavMeshPath _path;
+    [SerializeField] private float _stoppingDistance;
+
     void Start()
     {
         // initialize in game manager later
-        HeroData data = new HeroData();
+        AdventurerData data = new AdventurerData();
 
         // keep here
-        HeroData.RandomizeHero(this);
+        AdventurerData.RandomizeHero(this);
         _hp = Random.Range(1, 100);
         _walkSpeed = Random.Range(3, 10); // tank vs scout i guess
         _reputation = Random.Range(-5000, 5000);
+
+
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.speed = _walkSpeed;
 
         // REPUTATION RANKINGS //
         /*
@@ -45,7 +55,18 @@ public class HeroEntity : MonoBehaviour
 
     void Update()
     {
+        Quaternion q = Quaternion.LookRotation((Camera.main.transform.position - transform.position), transform.up);
+        Vector3 eulerAngles = q.eulerAngles;
+        transform.localEulerAngles = new Vector3(0, eulerAngles.y, 0);
+        if(_agent.hasPath && Vector3.Distance(transform.position, _agent.pathEndPosition) > _stoppingDistance)
+        {
+            transform.position += (_agent.nextPosition - transform.position).normalized * Time.deltaTime * _walkSpeed;
+        }
+    }
 
+    public void WalkToTarget(Vector3 location)
+    {
+        _agent.SetDestination(location);
     }
 
     public void SetHead(Sprite s) { _sHead.sprite = s; }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class HeroData
+public class AdventurerData
 {
     [Header("Visual Data")] // what the fella looks like
     [SerializeField] private static List<Sprite> _sHeadArr = new List<Sprite>();
@@ -14,7 +14,7 @@ public class HeroData
     [SerializeField] private static List<Sprite> _sFootArr = new List<Sprite>();
     [SerializeField] private static List<Sprite> _sNeckArr = new List<Sprite>();
 
-    static HeroData()
+    static AdventurerData()
     {
         InitilizeArrays();
     }
@@ -29,8 +29,6 @@ public class HeroData
         Sprite[] legs = Resources.LoadAll<Sprite>("Legs");
         Sprite[] feet = Resources.LoadAll<Sprite>("Feet");
         Sprite[] necks = Resources.LoadAll<Sprite>("Necks");
-
-        Debug.Log(heads.Length);
 
         if(heads.Length > 0)
             _sHeadArr.AddRange(heads);
@@ -57,7 +55,7 @@ public class HeroData
         //    Debug.LogWarning("No sprites found in Resources.");
     }
 
-    public static void RandomizeHero(HeroEntity h)
+    public static void RandomizeHero(AdventurerEntity h)
     {
         h.SetHead(PickRandomSprite(_sHeadArr));
         h.SetTorso(PickRandomSprite(_sTorsoArr));
