@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AdventurerEntity : MonoBehaviour
+public class AdventurerEntity : MonoBehaviour, ITradeManager
 {
     [Header("Decision Variables")] // random values here will let the hero decide what they want to buy
     [SerializeField] private int _hp;
@@ -21,6 +21,7 @@ public class AdventurerEntity : MonoBehaviour
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private NavMeshPath _path;
     [SerializeField] private float _stoppingDistance;
+    [SerializeField] private ItemData _requestedItem;
 
     void Start()
     {
@@ -76,4 +77,14 @@ public class AdventurerEntity : MonoBehaviour
     public void SetLegs(Sprite s) { _sLegs.sprite = s; }
     public void SetFeet(Sprite s) { _sFeet.sprite = s; }
     public void SetNeck(Sprite s) { _sNeck.sprite = s; }
+
+    public bool HandItem(ItemData item)
+    {
+        return _requestedItem.Equals(item);
+    }
+
+    public bool TradeActive()
+    {
+        return _requestedItem != null;
+    }
 }
