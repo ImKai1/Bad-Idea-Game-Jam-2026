@@ -15,7 +15,13 @@ public class TestingScript : MonoBehaviour
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
             Debug.Log("E Pressed");
-            audioManager.PlaySFX(audioManager.pouringSFX);
+            // audioManager.PlaySFX(audioManager.pouringSFX);
+        }
+
+        if (Keyboard.current.fKey.wasPressedThisFrame)
+        {
+            Debug.Log("F Pressed");
+            // audioManager.PlayVoice(audioManager.voice1);
         }
     }
 }
