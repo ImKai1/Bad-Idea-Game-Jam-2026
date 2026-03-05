@@ -213,6 +213,7 @@ public class FirstPersonController : MonoBehaviour
         gameInput.OnSprintCanceled += GameInput_OnSprintCanceled;
     }
 
+
     private void GameInput_OnSprintCanceled(object sender, EventArgs e)
     {
         if (holdToSprint)

@@ -35,7 +35,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.MainAction.performed += MainAction_performed;
         playerInputActions.Player.SecondaryAction.performed += SecondaryAction_performed;
-
+        
         // Movement Actions
         playerInputActions.Player.Jump.performed += Jump_performed;
         playerInputActions.Player.Crouch.started += Crouch_started;
@@ -46,6 +46,11 @@ public class GameInput : MonoBehaviour
         // Menu Actions
         playerInputActions.Player.ExtraHUD.performed += ExtraHUD_performed;
         playerInputActions.Player.Pause.performed += Pause_performed;
+    }
+
+    private void Interact_performed(InputAction.CallbackContext context)
+    {
+        OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void Sprint_canceled(InputAction.CallbackContext context)
@@ -93,11 +98,6 @@ public class GameInput : MonoBehaviour
         OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnInteractAction?.Invoke(this, EventArgs.Empty);
-    }
-
     public Vector2 GetMovementVectorNormalized()
     {
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
@@ -112,5 +112,28 @@ public class GameInput : MonoBehaviour
         Vector2 inputVector = playerInputActions.Player.Look.ReadValue<Vector2>();
         //inputVector = inputVector.normalized;
         return inputVector;
+    }
+
+    public string GetActionKeyName(InputAction inputAction)
+    {
+        return inputAction.GetBindingDisplayString();
+    }
+
+    
+    public void ChangeInputActionBinding(InputAction inputAction)
+    {
+        /*inputAction.Disable();
+        inputAction.binding
+        inputAction.actionMap.ChangeBinding(inputAction.GetBindingIndex()).OnComplete(operation =>
+        {
+            operation.Dispose();
+            inputAction.Enable();
+        }).Start();
+        inputAction.Enable();*/
+    }
+
+    public void ChangeJumpInputActionBinding()
+    {
+        ChangeInputActionBinding(playerInputActions.Player.Jump);
     }
 }
