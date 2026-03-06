@@ -22,12 +22,15 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
 
     private bool hasCompletedPotion;
     private PotionObjectSO currentPotionObject;
+    private Collider couldronCollider;
     
 
     private void Start()
     {
         currentBrewingRecipe = new List<BrewingIngredientSO>();
         currentBrewingIngredients = new List<BrewingIngredient>();
+        couldronCollider = GetComponent<Collider>();
+        couldronCollider.enabled = false;
     }
 
     private void Update()
@@ -81,6 +84,7 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
     {
         // Should allow the player to fill a potion with the liquid in the couldron
         hasCompletedPotion = true;
+        couldronCollider.enabled = true;
         interactionText = "Bottle " + currentPotionObject.potionName;
     }
 
@@ -90,6 +94,9 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
         {
             GameObject spawnedPotion = Instantiate(currentPotionObject.potionPrefab);
             player.SetHeldObject(spawnedPotion);
+            hasCompletedPotion = false;
+            couldronCollider.enabled = false;
+            interactionText = "";
         }
     }
 

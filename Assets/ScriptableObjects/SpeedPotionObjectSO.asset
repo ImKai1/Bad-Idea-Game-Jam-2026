@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4b62a01a75c79a438d1acb61d499588, type: 3}
-  m_Name: PotionObjectSO
+  m_Name: SpeedPotionObjectSO
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Speed Potion
   potionPrefab: {fileID: 5790224170780659148, guid: 89e6cba37927a5b4ea665d75ac27c94a, type: 3}

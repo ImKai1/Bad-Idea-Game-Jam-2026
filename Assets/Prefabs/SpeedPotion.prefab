@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 1983801624382386880}
   - component: {fileID: 8221960751153918690}
   - component: {fileID: 7894895553380238189}
-  - component: {fileID: 7394296772667196207}
   - component: {fileID: 2141327426724215811}
+  - component: {fileID: 7394296772667196207}
+  - component: {fileID: 3259755077565000742}
   m_Layer: 6
   m_Name: SpeedPotion
   m_TagString: Untagged
@@ -147,20 +148,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1f3ab9073fa6aed4bbec9d3a54b89a27, type: 3}
---- !u!114 &7394296772667196207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5790224170780659148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3368f92015eba0140b0032c719b6f945, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GrabbableObject
-  interactionText: Pick Up
-  interactPoint: {fileID: 8716582177681800439}
 --- !u!54 &2141327426724215811
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -188,3 +175,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7394296772667196207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790224170780659148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3368f92015eba0140b0032c719b6f945, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GrabbableObject
+  interactionText: Speed Potion
+  interactPoint: {fileID: 8716582177681800439}
+--- !u!114 &3259755077565000742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790224170780659148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6015ec1106681494cae1700a95a78855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BrewingIngredient
+  brewingIngredientSO: {fileID: 11400000, guid: 99220a5bc1fe8744cabd068264663d0e, type: 2}
