@@ -21,20 +21,29 @@ public class SettingsManager : MonoBehaviour
     // ============================================
     [Header("RESOLUTION")]
     [SerializeField] TMP_Dropdown ddResolution;
-    [SerializeField] Toggle FullScreenToggle;
+    // [SerializeField] Toggle FullScreenToggle;
+    [SerializeField] TMP_Dropdown ddFullScreenMode;
     Resolution[] allResolutions;
-    private bool isFullScreen;
+    // private bool isFullScreen;
+
+    FullScreenMode[] fullScreenModes = {FullScreenMode.ExclusiveFullScreen, 
+                                        FullScreenMode.FullScreenWindow, 
+                                        FullScreenMode.MaximizedWindow, 
+                                        FullScreenMode.Windowed};
     int selectedResolution;
+    int selectedFSM;
     List<Resolution> selectedResolutionList = new List<Resolution>();
+    List<FullScreenMode> selectedFSMList = new List<FullScreenMode>();
 
     private void Awake()
     {
-
-        isFullScreen = true;
+        FullScreenMode currentMode = Screen.fullScreenMode;
+        // isFullScreen = true;
         allResolutions = Screen.resolutions;
-
+        
         List<string> resolutionStringList = new List<string>();
         string newRes;
+        int i = 0, currValRes = 0;
         foreach (Resolution res in allResolutions)
         {
             newRes = res.width.ToString() + " x " + res.height.ToString();
@@ -43,9 +52,29 @@ public class SettingsManager : MonoBehaviour
                 resolutionStringList.Add(newRes);
                 selectedResolutionList.Add(res);
             }
-        }
 
+            if (res.width == Screen.currentResolution.width && res.height == Screen.currentResolution.height)
+            {
+                currValRes = i;
+            }
+            ++i;
+        }
         ddResolution.AddOptions(resolutionStringList);
+
+        int j = 0, curValFSM = 0;
+        List<string> fsmStringList = new List<string>();
+        foreach(FullScreenMode sm in fullScreenModes)
+        {
+            fsmStringList.Add(sm.ToString());
+            selectedFSMList.Add(sm);
+
+            if (sm == currentMode)
+            {
+                curValFSM = j;
+            }
+            ++j;
+        }
+        ddFullScreenMode.AddOptions(fsmStringList);
 
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", masterVolumeDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolumeDefaultValue);
@@ -56,8 +85,9 @@ public class SettingsManager : MonoBehaviour
         SetSFXVolume();
         SetVoiceVolume();
 
-        ddResolution.value = PlayerPrefs.GetInt("ScreenResolution");
-        FullScreenToggle.isOn = PlayerPrefs.GetInt("FullScreen", 1) != 0;
+        ddResolution.value = PlayerPrefs.GetInt("ScreenResolution", currValRes);
+        // FullScreenToggle.isOn = PlayerPrefs.GetInt("FullScreen", 1) != 0;
+        ddFullScreenMode.value = PlayerPrefs.GetInt("FullScreen", curValFSM);
         SetResolution();
     }
 
@@ -95,19 +125,23 @@ public class SettingsManager : MonoBehaviour
     }
 
     // =================================================
+    // public void SetQuality (int qualityIndex) {
+    //     QualitySettings.SetQualityLevel(qualityIndex);
+    // }
+
     public void SetResolution()
     {
         selectedResolution = ddResolution.value;
-        Screen.SetResolution(selectedResolutionList[selectedResolution].width, selectedResolutionList[selectedResolution].height, isFullScreen);
+        Screen.SetResolution(selectedResolutionList[selectedResolution].width, selectedResolutionList[selectedResolution].height, selectedFSMList[selectedFSM]);
         PlayerPrefs.SetInt("ScreenResolution", selectedResolution);
         PlayerPrefs.Save();
     }
 
     public void SetFullScreen()
     {
-        isFullScreen = FullScreenToggle.isOn;
-        Screen.SetResolution(selectedResolutionList[selectedResolution].width, selectedResolutionList[selectedResolution].height, isFullScreen);
-        PlayerPrefs.SetInt("FullScreen", isFullScreen ? 1 : 0);
+        selectedFSM = ddFullScreenMode.value;
+        Screen.SetResolution(selectedResolutionList[selectedResolution].width, selectedResolutionList[selectedResolution].height, selectedFSMList[selectedFSM]);
+        PlayerPrefs.SetInt("FullScreen", selectedFSM);
         PlayerPrefs.Save();
     }
 }

@@ -8,29 +8,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource sfxSource;
     [SerializeField] AudioSource voiceSource;
 
-    [Header("Music")]
+    [Header("Preset Music")]
     public AudioClip bgm;
-    public AudioClip bgm1;
-    public AudioClip bgm2;
-    public AudioClip bgm3;
-    public AudioClip bgm4;
-
-    [Header("Sound Effects")]
+    [Header("Preset Sound Effects")]
     public AudioClip cursorClickGeneral;
     public AudioClip cursorClickOpenUI;
     public AudioClip cursorClickBackOrClose;
     public AudioClip sfx3;
-    public AudioClip sfx4;
-    public AudioClip sfx5;
 
-    [Header("Voices")]
+    [Header("Preset Voices")]
     public AudioClip shinraTenseiTest;
     public AudioClip voice2;
-    public AudioClip voice3;
-    public AudioClip voice4;
-    public AudioClip voice5;
-    public AudioClip voice6;
-
+    
     private void Start()
     {
         musicSource.clip = bgm;
@@ -56,7 +45,6 @@ public class AudioManager : MonoBehaviour
     }
 
     // ================================
-
     public void PlayCursorGeneralClick()
     {
         PlaySFX(cursorClickGeneral);
