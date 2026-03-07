@@ -3,6 +3,8 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.PlayerLoop;
+using System.Runtime.InteropServices;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -20,16 +22,18 @@ public class SettingsManager : MonoBehaviour
 
     // ============================================
     [Header("RESOLUTION")]
+    [SerializeField] TMP_Dropdown ddTargetFPS;
     [SerializeField] TMP_Dropdown ddResolution;
     // [SerializeField] Toggle FullScreenToggle;
     [SerializeField] TMP_Dropdown ddFullScreenMode;
+    List<string> fps = new List<string>() {"10", "24", "30", "60", "120", "144", "240"};
     Resolution[] allResolutions;
     // private bool isFullScreen;
-
     FullScreenMode[] fullScreenModes = {FullScreenMode.ExclusiveFullScreen, 
                                         FullScreenMode.FullScreenWindow, 
                                         FullScreenMode.MaximizedWindow, 
                                         FullScreenMode.Windowed};
+    int selectedFPS;
     int selectedResolution;
     int selectedFSM;
     List<Resolution> selectedResolutionList = new List<Resolution>();
@@ -40,6 +44,8 @@ public class SettingsManager : MonoBehaviour
         FullScreenMode currentMode = Screen.fullScreenMode;
         // isFullScreen = true;
         allResolutions = Screen.resolutions;
+        
+        ddTargetFPS.AddOptions(fps);
         
         List<string> resolutionStringList = new List<string>();
         string newRes;
@@ -75,6 +81,9 @@ public class SettingsManager : MonoBehaviour
             ++j;
         }
         ddFullScreenMode.AddOptions(fsmStringList);
+
+        ddTargetFPS.value = PlayerPrefs.GetInt("Target FPS");
+        SetFPS();
 
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", masterVolumeDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolumeDefaultValue);
@@ -128,6 +137,13 @@ public class SettingsManager : MonoBehaviour
     // public void SetQuality (int qualityIndex) {
     //     QualitySettings.SetQualityLevel(qualityIndex);
     // }
+
+    public void SetFPS () {
+        selectedFPS = ddTargetFPS.value;
+        Application.targetFrameRate = selectedFPS;
+        PlayerPrefs.SetInt("Target FPS", selectedFPS);
+        PlayerPrefs.Save();
+    }
 
     public void SetResolution()
     {
