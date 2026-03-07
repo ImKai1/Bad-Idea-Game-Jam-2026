@@ -3,8 +3,10 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using UnityEngine.PlayerLoop;
-using System.Runtime.InteropServices;
+using System.Data;
+// using UnityEngine.PlayerLoop;
+// using System.Runtime.InteropServices;
+// using System.Diagnostics;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -33,9 +35,7 @@ public class SettingsManager : MonoBehaviour
                                         FullScreenMode.FullScreenWindow, 
                                         FullScreenMode.MaximizedWindow, 
                                         FullScreenMode.Windowed};
-    int selectedFPS;
-    int selectedResolution;
-    int selectedFSM;
+    int selectedFPSInt, selectedResolution, selectedFSM;
     List<Resolution> selectedResolutionList = new List<Resolution>();
     List<FullScreenMode> selectedFSMList = new List<FullScreenMode>();
 
@@ -139,10 +139,17 @@ public class SettingsManager : MonoBehaviour
     // }
 
     public void SetFPS () {
-        selectedFPS = ddTargetFPS.value;
-        Application.targetFrameRate = selectedFPS;
-        PlayerPrefs.SetInt("Target FPS", selectedFPS);
-        PlayerPrefs.Save();
+        if (int.TryParse(fps[ddTargetFPS.value], out selectedFPSInt))
+        {            
+            Debug.Log(selectedFPSInt);
+            Application.targetFrameRate = selectedFPSInt;
+            PlayerPrefs.SetInt("Target FPS", selectedFPSInt);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            Debug.LogWarning("FPS Input is NOT valid");
+        }
     }
 
     public void SetResolution()
