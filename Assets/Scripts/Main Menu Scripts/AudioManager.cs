@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         musicSource.clip = bgm;
+        musicSource.loop = true;
         musicSource.Play();
     }
 
