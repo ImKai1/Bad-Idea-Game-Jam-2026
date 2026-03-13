@@ -37,4 +37,14 @@ public class GrabbableObject : MonoBehaviour, IInteractable
         if (player.IsPlayerHoldingObject()) { return Vector3.zero; }
         return interactPoint.position;
     }
+
+    public void HideUnselectedHotbarObject()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ShowSelectedHotBarObject()
+    {
+        gameObject.SetActive(true);
+    }
 }

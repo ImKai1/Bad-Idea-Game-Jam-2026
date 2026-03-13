@@ -12604,6 +12604,10 @@ PrefabInstance:
       propertyPath: m_VolumeTrigger
       value: 
       objectReference: {fileID: 870146344}
+    - target: {fileID: 2519308095643745719, guid: 78430c3c36790dc4790efa9a2b28c357, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2721103217451593361, guid: 78430c3c36790dc4790efa9a2b28c357, type: 3}
       propertyPath: m_Enabled
       value: 1

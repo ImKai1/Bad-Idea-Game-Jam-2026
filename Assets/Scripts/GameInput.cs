@@ -1,5 +1,4 @@
 using System;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +10,8 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnInteractAction;
     public event EventHandler OnMainAction;
     public event EventHandler OnSecondaryAction;
+    public event EventHandler<int> OnHotbarSlotSelected;
+    public event EventHandler<int> OnHotbarSlotCycled;
 
     // Movement Events
     public event EventHandler OnJumpAction;
@@ -35,6 +36,9 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += Interact_performed;
         playerInputActions.Player.MainAction.performed += MainAction_performed;
         playerInputActions.Player.SecondaryAction.performed += SecondaryAction_performed;
+
+        //Hotbar Actions
+        playerInputActions.Player.HotbarAction.performed += HotbarAction_performed;
         
         // Movement Actions
         playerInputActions.Player.Jump.performed += Jump_performed;
@@ -46,6 +50,28 @@ public class GameInput : MonoBehaviour
         // Menu Actions
         playerInputActions.Player.ExtraHUD.performed += ExtraHUD_performed;
         playerInputActions.Player.Pause.performed += Pause_performed;
+    }
+
+    private void HotbarAction_performed(InputAction.CallbackContext context)
+    {
+        //int index = Mathf.RoundToInt(context.ReadValue<float>());
+        int bindingIndex = context.action.GetBindingIndexForControl(context.control);
+
+        if(bindingIndex < 3)
+        {
+            Debug.Log("Binding Index: " + bindingIndex);
+            OnHotbarSlotSelected?.Invoke(this, bindingIndex);
+        }
+        else
+        {
+            float value = context.ReadValue<float>();
+
+            int direction = value > 0 ? 1 : -1;
+
+            OnHotbarSlotCycled?.Invoke(this, direction);
+        }
+
+
     }
 
     private void Interact_performed(InputAction.CallbackContext context)
@@ -135,5 +161,10 @@ public class GameInput : MonoBehaviour
     public void ChangeJumpInputActionBinding()
     {
         ChangeInputActionBinding(playerInputActions.Player.Jump);
+    }
+
+    private void OnDestroy()
+    {
+        playerInputActions.Dispose();
     }
 }
