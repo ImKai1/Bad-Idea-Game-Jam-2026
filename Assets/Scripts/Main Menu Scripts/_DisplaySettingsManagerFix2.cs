@@ -1,14 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-public class DisplaySettingsManagerFix2 : MonoBehaviour
+using UnityEngine.UI;
+public class _DisplaySettingsManagerFix2 : MonoBehaviour
 {
     [Header("RESOLUTION")]
     [SerializeField] TMP_Dropdown ddTargetFPS;
     [SerializeField] TMP_Dropdown ddResolution;
     // [SerializeField] Toggle FullScreenToggle;
     [SerializeField] TMP_Dropdown ddFullScreenMode;
-    public List<string> fps = new List<string>() {"10", "24", "30", "60", "120", "144", "240"};
+    [SerializeField] Toggle vSyncToggle;
+    [System.NonSerialized] public List<string> fps = new List<string>() {"10", "30", "60", "120", "144", "240", "360"};
     Resolution[] allResolutions;
     // private bool isFullScreen;
     FullScreenMode[] fullScreenModes = {FullScreenMode.ExclusiveFullScreen, 
@@ -64,16 +66,26 @@ public class DisplaySettingsManagerFix2 : MonoBehaviour
         }
         ddFullScreenMode.AddOptions(fsmStringList);
 
+        Application.targetFrameRate = -1;
+
         ddTargetFPS.value = PlayerPrefs.GetInt("TargetFPS");
         SetFPS();
 
-        Debug.Log("FPS IS LOADED");
-
+        // Debug.Log("FPS IS LOADED");
 
         ddResolution.value = PlayerPrefs.GetInt("ScreenResolution", currValRes);
         // FullScreenToggle.isOn = PlayerPrefs.GetInt("FullScreen", 1) != 0;
         ddFullScreenMode.value = PlayerPrefs.GetInt("WindowMode", curValFSM);
         SetResolution();
+
+        vSyncToggle.onValueChanged.AddListener(OnVSyncToggled);
+        vSyncToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt("VSync", 1) != 0);
+        ApplyVSync();
+    }
+
+    private void Start () {
+        // vSyncToggle.isOn = PlayerPrefs.GetInt("VSync", 1) != 0;
+        // SetVSync();
     }
 
     // public void SetQuality (int qualityIndex) {
@@ -83,7 +95,7 @@ public class DisplaySettingsManagerFix2 : MonoBehaviour
     public void SetFPS () {
         if (int.TryParse(fps[ddTargetFPS.value], out selectedFPSInt))
         {            
-            // Debug.Log(selectedFPSInt);
+            Debug.Log("FPS ENTEREDDD: " + selectedFPSInt);
             Application.targetFrameRate = selectedFPSInt;
         }
         else
@@ -109,4 +121,29 @@ public class DisplaySettingsManagerFix2 : MonoBehaviour
         PlayerPrefs.SetInt("WindowMode", selectedFSM);
         PlayerPrefs.Save();
     }
+
+    // public void SetVSync()
+    // {
+    //     Debug.Log("Enter VSync Change");
+    //     int vSyncValue = vSyncToggle.isOn ? 1 : 0;
+    //     QualitySettings.vSyncCount = vSyncValue;
+    //     Debug.Log("VSync VAL: " + vSyncValue);
+    //     PlayerPrefs.SetInt("VSync", vSyncValue);
+    //     PlayerPrefs.Save();
+    // }
+
+    private void OnVSyncToggled(bool isOn)
+    {
+        ApplyVSync();
+    }
+
+    private void ApplyVSync()
+    {
+        int vSyncValue = vSyncToggle.isOn ? 1 : 0;
+        QualitySettings.vSyncCount = vSyncValue;
+        Debug.Log("VSync VAL: " + vSyncValue + " | Unity reports: " + QualitySettings.vSyncCount);
+        PlayerPrefs.SetInt("VSync", vSyncValue);
+        PlayerPrefs.Save();
+    }
+
 }

@@ -17,7 +17,7 @@ public class AudioSettingsManager : MonoBehaviour
     private float sfxVolumeDefaultValue = 1;
     private float voiceVolumeDefaultValue = 1;
 
-    void Start()
+    private void Start()
     {
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", masterVolumeDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolumeDefaultValue);

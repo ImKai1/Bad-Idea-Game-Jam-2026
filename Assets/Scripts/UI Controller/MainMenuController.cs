@@ -3,14 +3,14 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
-    public void PlayButton()
+    private void PlayButton()
     {
         SceneManager.LoadScene("KaisPlayground");
     }
 
-    public void QuitButton()
+    private void QuitButton()
     {
         Application.Quit();
     }

@@ -20,6 +20,10 @@ public class AudioManager : MonoBehaviour
     [Header("Preset Voices")]
     public AudioClip shinraTenseiTest;
     public AudioClip voice2;
+
+    private void Awake () {
+        DontDestroyOnLoad(gameObject);
+    }
     
     private void Start()
     {

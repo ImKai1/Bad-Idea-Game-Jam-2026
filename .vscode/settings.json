@@ -67,5 +67,9 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Bad-Idea-Game-Jam-2026.slnx"
+    "dotnet.defaultSolution": "Bad-Idea-Game-Jam-2026.slnx",
+    "editor.tokenColorCustomizations": {
+        "comments": "",
+        "textMateRules": []
+    }
 }
