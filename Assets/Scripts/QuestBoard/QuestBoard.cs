@@ -27,7 +27,6 @@ public class QuestBoard : MonoBehaviour, IQuest
 
         // Instantiate visual
         QuestVisual v = Instantiate(VisualPrefab, transform).GetComponent<QuestVisual>();
-        v.SetData(quest.title, quest.desc);
         visuals.Add(v);
     }
 

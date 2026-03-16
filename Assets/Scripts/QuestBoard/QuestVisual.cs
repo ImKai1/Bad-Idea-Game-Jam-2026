@@ -7,7 +7,7 @@ public class QuestVisual : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Title;
     [SerializeField] private TextMeshProUGUI Desc;
 
-    public QuestVisual(string title, string desc)
+    public QuestVisual(string title = "Quest", string desc = "Go, do a crime")
     {
         SetData(title, desc);
     }

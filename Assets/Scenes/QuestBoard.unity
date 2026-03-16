@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4289a20aa6bd534ab4f758a376fe875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestBoard
-  VisualPrefab: {fileID: 9120719509119182873, guid: 01dc1a5df924e0d43aaf7c3a890066c7, type: 3}
+  VisualPrefab: {fileID: 7425760362993835405, guid: 01dc1a5df924e0d43aaf7c3a890066c7, type: 3}
   visuals: []
 --- !u!4 &1800447401
 Transform:
