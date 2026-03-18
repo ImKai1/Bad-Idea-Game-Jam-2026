@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AdventurerEntity : MonoBehaviour, ITradeManager
+public class AdventurerEntity : MonoBehaviour, ITradeManager, IInteractable
 {
     [Header("Decision Variables")] // random values here will let the hero decide what they want to buy
     [SerializeField] private int _hp;
@@ -87,4 +87,12 @@ public class AdventurerEntity : MonoBehaviour, ITradeManager
     {
         return _requestedItem != null;
     }
+
+    public void Interact()
+    {
+
+    }
+
+    public string GetInteractionText() { return "Idk you interacted with fella #2 or smth"; }
+    public Vector3 GetInteractionPosition() { return Vector3.zero; }
 }
