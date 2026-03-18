@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         {
             if(hit.transform.TryGetComponent(out IInteractable interactable))
             {
-                if(hit.transform.TryGetComponent(out IInteractable interactable))
+                if(interactable != null)
                 {
                     // Show interaction UI
                     Debug.Log("Looking at " + interactable);

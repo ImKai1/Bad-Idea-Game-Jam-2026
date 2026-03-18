@@ -88,7 +88,7 @@ public class AdventurerEntity : MonoBehaviour, ITradeManager, IInteractable
         return _requestedItem != null;
     }
 
-    public void Interact()
+    public void Interact(Player player)
     {
 
     }
