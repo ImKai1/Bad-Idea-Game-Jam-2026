@@ -89,23 +89,25 @@ public class Player : MonoBehaviour
                     currentInteractable = null;
                 }
 
-                if(hit.transform.TryGetComponent(out ITradeManager trade) && heldObject != null)
-                {
-                    Debug.Log("Found adventurer. Trade possible");
-                    if (trade.TradeActive()) return;
+                // Need to properly implement sell/buy mechanics
+                //if(hit.transform.TryGetComponent(out ITradeManager trade) && heldObject != null)
+                //{
+                //    Debug.Log("Found adventurer. Trade possible");
+                //    if (trade.TradeActive()) return;
 
-                    ItemData i = new ItemData("Default Item", 100); // REPLACE w/ DATA FROM currentInteractable or heldObject
-                    if (trade.HandItem(i))
-                    {
-                        Debug.Log("Correct item! Gain money $" + i.Value);
-                    }
-                    else
-                    {
-                        Debug.Log("Wrong item. Lose money -$" + (i.Value / 4));
-                    }
+                //    ItemData i = new ItemData("Default Item", 100); // REPLACE w/ DATA FROM currentInteractable or heldObject
+                //    if (trade.HandItem(i))
+                //    {
+                //        Debug.Log("Correct item! Gain money $" + i.Value);
+                //    }
+                //    else
+                //    {
+                //        Debug.Log("Wrong item. Lose money -$" + (i.Value / 4));
+                //    }
 
-                    Destroy(heldObject);
-                }
+                //    Destroy(heldObject);
+                //}
+
                 // Show interaction UI
                 currentInteractable = interactable;
             }

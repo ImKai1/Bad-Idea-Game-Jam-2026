@@ -8110,6 +8110,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aba6b976861026043ab27b592b13c722, type: 3}
   m_PrefabInstance: {fileID: 512648426}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1202208209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6830178659726164828, guid: 78430c3c36790dc4790efa9a2b28c357, type: 3}
+  m_PrefabInstance: {fileID: 5047346602223388564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1220927703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8121,6 +8126,10 @@ PrefabInstance:
     - target: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
       propertyPath: m_Name
       value: NPC-Test
+      objectReference: {fileID: 0}
+    - target: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6972614533910918982, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8165,7 +8174,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1344270340}
+    - targetCorrespondingSourceObject: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1344270339}
+    - targetCorrespondingSourceObject: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1344270341}
   m_SourcePrefab: {fileID: 100100000, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
 --- !u!4 &1254277373 stripped
 Transform:
@@ -8242,6 +8260,70 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725d9061657be724facf6fda9fe05b4f, type: 3}
+--- !u!1 &1296128581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1296128583}
+  - component: {fileID: 1296128582}
+  m_Layer: 0
+  m_Name: NavMesh Surface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1296128582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296128581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 1
+  m_Size: {x: 97.31, y: 10, z: 42.26}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 9e9174ed283802b4199ee30458117989, type: 2}
+  m_BuildHeightMesh: 0
+--- !u!4 &1296128583
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296128581}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.18451, y: 1.18524, z: -5.04575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1314532739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6a06cee3779f5f241b081409b0e76366, type: 3}
@@ -8531,6 +8613,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!1 &1344270336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 115836974184436689, guid: 67897680dd894374b83400bd9dd50f36, type: 3}
+  m_PrefabInstance: {fileID: 1220927703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1344270339
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344270336}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1344270340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344270336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a55d5245b9bb84bbeab3183fafc99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AdventurerEntity
+  _hp: 0
+  _walkSpeed: 0.2
+  _lookSpeed: 720
+  _reputation: 0
+  _agent: {fileID: 0}
+  _stoppingDistance: 1.2
+  _itemsWanted: []
+  _currentQuest:
+    objectives: []
+    adventurerRewards: []
+    title: 
+    desc: 
+    bonus: 0
+  _walkTarget: {fileID: 1202208209}
+--- !u!136 &1344270341
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344270336}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &1346192374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2796882267322402657, guid: 516bb2fe1d1c8584d9ad829a9eb9d4d3, type: 3}
@@ -12758,3 +12916,4 @@ SceneRoots:
   - {fileID: 849549594}
   - {fileID: 1016916292}
   - {fileID: 1220927703}
+  - {fileID: 1296128583}

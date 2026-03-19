@@ -57,13 +57,13 @@ public class AdventurerData
 
     public static void RandomizeHero(AdventurerEntity h)
     {
-        h.SetHead(PickRandomSprite(_sHeadArr));
-        h.SetTorso(PickRandomSprite(_sTorsoArr));
-        h.SetArms(PickRandomSprite(_sArmArr));
-        h.SetHands(PickRandomSprite(_sHandArr));
-        h.SetLegs(PickRandomSprite(_sLegArr));
-        h.SetFeet(PickRandomSprite(_sFootArr));
-        h.SetNeck(PickRandomSprite(_sNeckArr));
+        //h.SetHead(PickRandomSprite(_sHeadArr));
+        //h.SetTorso(PickRandomSprite(_sTorsoArr));
+        //h.SetArms(PickRandomSprite(_sArmArr));
+        //h.SetHands(PickRandomSprite(_sHandArr));
+        //h.SetLegs(PickRandomSprite(_sLegArr));
+        //h.SetFeet(PickRandomSprite(_sFootArr));
+        //h.SetNeck(PickRandomSprite(_sNeckArr));
     }
 
     private static Sprite PickRandomSprite(List<Sprite> arr)
