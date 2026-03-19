@@ -199,6 +199,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar Action"",
+                    ""type"": ""Value"",
+                    ""id"": ""9b12f118-7003-456b-ae58-70755307237a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -564,6 +573,72 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Extra HUD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""638e6939-6ac2-41d5-98a3-6647e655b973"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ea118b0-5731-4ccd-82ba-62e968c3eb25"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffbc509d-c131-4cb1-9839-fd31df17d39e"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""fb54cf63-c068-4038-8ca6-f8d15e4b8d92"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5eee3b15-1288-46f4-ae81-bf84592258c6"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e62afcb6-bf98-44c0-9d14-d8b2c202dfdd"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -1161,6 +1236,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_ExtraHUD = m_Player.FindAction("Extra HUD", throwIfNotFound: true);
+        m_Player_HotbarAction = m_Player.FindAction("Hotbar Action", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1266,6 +1342,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_ExtraHUD;
+    private readonly InputAction m_Player_HotbarAction;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1325,6 +1402,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/ExtraHUD".
         /// </summary>
         public InputAction @ExtraHUD => m_Wrapper.m_Player_ExtraHUD;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HotbarAction".
+        /// </summary>
+        public InputAction @HotbarAction => m_Wrapper.m_Player_HotbarAction;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1387,6 +1468,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ExtraHUD.started += instance.OnExtraHUD;
             @ExtraHUD.performed += instance.OnExtraHUD;
             @ExtraHUD.canceled += instance.OnExtraHUD;
+            @HotbarAction.started += instance.OnHotbarAction;
+            @HotbarAction.performed += instance.OnHotbarAction;
+            @HotbarAction.canceled += instance.OnHotbarAction;
         }
 
         /// <summary>
@@ -1434,6 +1518,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ExtraHUD.started -= instance.OnExtraHUD;
             @ExtraHUD.performed -= instance.OnExtraHUD;
             @ExtraHUD.canceled -= instance.OnExtraHUD;
+            @HotbarAction.started -= instance.OnHotbarAction;
+            @HotbarAction.performed -= instance.OnHotbarAction;
+            @HotbarAction.canceled -= instance.OnHotbarAction;
         }
 
         /// <summary>
@@ -1818,6 +1905,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExtraHUD(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hotbar Action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHotbarAction(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
