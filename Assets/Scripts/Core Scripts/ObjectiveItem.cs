@@ -27,7 +27,7 @@ public class ObjectiveItem : InteractableObject, IInteractable
 
     //These fields are cached from the ObjectiveDataSO for easier access when registering the item with the PlayerObjectiveManager. This way we don't have to access the ScriptableObject every time we register the item, which can be more efficient. 
     private PlayerObjectiveManager.ObjectiveItemType objectiveItemType;
-    private string eventID;
+    private string objectiveEventID;
 
     //Automatically creates a unique item ID based on the instance ID of the game object. This ensures that each item has a unique identifier for tracking purposes.
     private string itemID => gameObject.GetInstanceID().ToString();
@@ -43,17 +43,30 @@ public class ObjectiveItem : InteractableObject, IInteractable
         }
 
         objectiveItemType = objectiveData.objectiveItemType;
-        eventID = objectiveData.eventID;
+        objectiveEventID = objectiveData.objectiveEventID;
     }
 
     public override void Interact(Player player)
     {
         //when player interacts with this item, register it with the PlayerObjectiveManager
+        if(objectiveManager == null && PlayerObjectiveManager.Instance != null)
+        {
+            objectiveManager = PlayerObjectiveManager.Instance;
+        }
+
+
         if (objectiveManager != null)
         {
-            Debug.Log($"Registering item with PlayerObjectiveManager: {itemName}, Amount: {itemAmount}, Type: {objectiveItemType}, EventID: {eventID}");
+            if(objectiveEventID == null)
+            {
+                Debug.LogWarning($"ObjectiveItem {itemName} is missing objective event ID or item type. Please check the ObjectiveDataSO for this item.");
+                objectiveItemType = objectiveData.objectiveItemType;
+                objectiveEventID = objectiveData.objectiveEventID;
+            }
+            
+            Debug.Log($"Registering item with PlayerObjectiveManager: {itemName}, Amount: {itemAmount}, Type: {objectiveItemType}, EventID: {objectiveEventID}");
             ////objectiveManager.CanRegisterItem(itemID);
-            objectiveManager.ObjectiveItemInteract(itemID, itemName, itemAmount, objectiveData);
+            objectiveManager.ObjectiveItemInteract(itemID, itemName, itemAmount, objectiveItemType, objectiveEventID);
             Debug.Log("Interacted with ObjectiveItem: " + itemName);
 
             //TODO: trigger the event associated with this item, e.g. "Ingredient_Collected", so that the PlayerObjectiveManager can listen for it and update the objective progress accordingly. 

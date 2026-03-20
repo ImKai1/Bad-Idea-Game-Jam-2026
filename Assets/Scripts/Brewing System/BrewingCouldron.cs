@@ -91,6 +91,11 @@ public class BrewingCouldron : InteractableObject, IInteractable
         {
             GameObject spawnedPotion = Instantiate(currentPotionObject.potionPrefab);
             player.SetHeldObject(spawnedPotion);
+            if(spawnedPotion.TryGetComponent(out ObjectiveItem objectiveItem))
+            {
+                objectiveItem.Interact(player);
+            }
+            
             hasCompletedPotion = false;
             couldronCollider.enabled = false;
             SetInteractionText("");
