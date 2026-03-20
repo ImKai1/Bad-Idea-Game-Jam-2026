@@ -2434,13 +2434,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9089a6f363f00834a9f10a76ccffef32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrewingCouldron
+  interactionText: 
+  interactPoint: {fileID: 1193383538735127180}
   brewingAreaSize: 0.7
   brewingAreaOffset: {x: 0, y: 0.5, z: 0}
   brewingIngredientLayer:
     serializedVersion: 2
     m_Bits: 128
-  interactionText: 
-  interactionPoint: {fileID: 1193383538735127180}
   everyBrewingRecipeListSO: {fileID: 11400000, guid: 7f2fad268fadcb8458cd4659cfb6c001, type: 2}
 --- !u!65 &4457346759584412497
 BoxCollider:

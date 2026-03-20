@@ -5,15 +5,12 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class BrewingCouldron : MonoBehaviour, IInteractable
+public class BrewingCouldron : InteractableObject, IInteractable
 {
 
     [SerializeField] private float brewingAreaSize;
     [SerializeField] private Vector3 brewingAreaOffset;
     [SerializeField] private LayerMask brewingIngredientLayer;
-
-    [SerializeField] private string interactionText;
-    [SerializeField] private Transform interactionPoint;
 
     [SerializeField] private EveryBrewingRecipeListSO everyBrewingRecipeListSO;
     
@@ -85,7 +82,7 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
         // Should allow the player to fill a potion with the liquid in the couldron
         hasCompletedPotion = true;
         couldronCollider.enabled = true;
-        interactionText = "Bottle " + currentPotionObject.potionName;
+        SetInteractionText(currentPotionObject.couldronInteractionText);
     }
 
     private void OnPlayerInteract(Player player)
@@ -96,7 +93,7 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
             player.SetHeldObject(spawnedPotion);
             hasCompletedPotion = false;
             couldronCollider.enabled = false;
-            interactionText = "";
+            SetInteractionText("");
         }
     }
 
@@ -123,18 +120,8 @@ public class BrewingCouldron : MonoBehaviour, IInteractable
         }
     }
 
-    public void Interact(Player player)
+    public override void Interact(Player player)
     {
         OnPlayerInteract(player);
-    }
-
-    public string GetInteractionText()
-    {
-        return interactionText;
-    }
-
-    public Vector3 GetInteractionPosition()
-    {
-        return interactionPoint.position;
     }
 }

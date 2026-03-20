@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2141327426724215811}
   - component: {fileID: 7394296772667196207}
   - component: {fileID: 3259755077565000742}
+  - component: {fileID: -5543785424773626331}
   m_Layer: 6
   m_Name: SpeedPotion
   m_TagString: Untagged
@@ -202,3 +203,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BrewingIngredient
   brewingIngredientSO: {fileID: 11400000, guid: 99220a5bc1fe8744cabd068264663d0e, type: 2}
+--- !u!114 &-5543785424773626331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5790224170780659148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a46f16367dc4541ba4d6b2e0b2ccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectiveItem
+  interactionText: Interact
+  interactPoint: {fileID: 8716582177681800439}
+  objectiveData: {fileID: 11400000, guid: 4ae6874efd9e9484a9180b1738471422, type: 2}
+  itemName: Speed Potion
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  itemAmount: 1
