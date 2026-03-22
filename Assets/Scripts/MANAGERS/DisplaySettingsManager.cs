@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DisplaySettingsManager : MonoBehaviour
 {
-    public static DisplaySettingsManager Instance { get; private set;}
+    public static DisplaySettingsManager Instance { get; private set; }
 
-    private static readonly int[] _fpsOptions = {10, 24, 30, 60, 120, 144, 240, 360};
+    private static readonly int[] _fpsOptions = { 10, 24, 30, 60, 120, 144, 240, 360 };
 
     private static readonly FullScreenMode[] _windowModes = {
         FullScreenMode.ExclusiveFullScreen,
@@ -14,12 +14,12 @@ public class DisplaySettingsManager : MonoBehaviour
         FullScreenMode.MaximizedWindow,
         FullScreenMode.Windowed
     };
-    public int TargetFPS {get; private set;}
-    public int ResolutionIndex {get; private set;}
-    public FullScreenMode WindowMode {get; private set;}
-    public bool VSync {get; private set;}
-    
-    public List<Resolution> UniqueResolutions {get; private set;}
+    public int TargetFPS { get; private set; }
+    public int ResolutionIndex { get; private set; }
+    public FullScreenMode WindowMode { get; private set; }
+    public bool VSync { get; private set; }
+
+    public List<Resolution> UniqueResolutions { get; private set; }
 
     private void Awake()
     {
@@ -33,10 +33,16 @@ public class DisplaySettingsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         BuildResolutionList();
-        LoadAll();
+        LoadSavedDisplay();
     }
 
-    private void BuildResolutionList () {
+    private void Start()
+    {
+        DisplayInitialization();
+    }
+
+    private void BuildResolutionList()
+    {
         UniqueResolutions = new List<Resolution>();
         HashSet<string> seen = new HashSet<string>();
 
@@ -49,20 +55,20 @@ public class DisplaySettingsManager : MonoBehaviour
                 UniqueResolutions.Add(res);
             }
         }
-    }  
+    }
 
-    private void LoadAll()
+    private void LoadSavedDisplay()
     {
         TargetFPS = PlayerPrefs.GetInt(PlayerPrefsKeys.TargetFPS, 3);
         ResolutionIndex = PlayerPrefs.GetInt(PlayerPrefsKeys.ScreenResolution, 0);
         WindowMode = (FullScreenMode)PlayerPrefs.GetInt(PlayerPrefsKeys.WindowMode, 0);
         VSync = PlayerPrefs.GetInt(PlayerPrefsKeys.VSync, 1) != 0;
 
-        DisplayInitialization();
     }
 
 
-    public void DisplayInitialization () {
+    public void DisplayInitialization()
+    {
         ApplyResolutionAndWindowMode();
         ApplyVSync();
         ApplyFPS();
@@ -73,7 +79,7 @@ public class DisplaySettingsManager : MonoBehaviour
     {
         List<string> options = new List<string>();
         foreach (int fps in _fpsOptions)
-        {        
+        {
             options.Add(fps.ToString());
         }
         return options;
@@ -90,7 +96,8 @@ public class DisplaySettingsManager : MonoBehaviour
     }
     // ============================================================================================== //    
 
-    public void ApplyResolutionAndWindowMode () {
+    public void ApplyResolutionAndWindowMode()
+    {
         if (ResolutionIndex < UniqueResolutions.Count)
         {
             Screen.SetResolution(
@@ -101,7 +108,8 @@ public class DisplaySettingsManager : MonoBehaviour
         }
     }
 
-    public void ApplyFPS () {
+    public void ApplyFPS()
+    {
 
         if (TargetFPS < _fpsOptions.Length)
         {
@@ -109,7 +117,8 @@ public class DisplaySettingsManager : MonoBehaviour
         }
     }
 
-    public void ApplyVSync () {
+    public void ApplyVSync()
+    {
         QualitySettings.vSyncCount = VSync ? 1 : 0;
     }
 
@@ -122,13 +131,15 @@ public class DisplaySettingsManager : MonoBehaviour
         PlayerPrefs.Save();
         ApplyFPS();
     }
-    public void SetResolution (int index) {
+    public void SetResolution(int index)
+    {
         ResolutionIndex = index;
         PlayerPrefs.SetInt(PlayerPrefsKeys.ScreenResolution, index);
         PlayerPrefs.Save();
         ApplyResolutionAndWindowMode();
     }
-    public void SetWindowMode (int index) {
+    public void SetWindowMode(int index)
+    {
         WindowMode = _windowModes[index];
         PlayerPrefs.SetInt(PlayerPrefsKeys.WindowMode, (int)WindowMode);
         PlayerPrefs.Save();

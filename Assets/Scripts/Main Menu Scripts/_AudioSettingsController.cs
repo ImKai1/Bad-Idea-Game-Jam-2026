@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class AudioSettingsManager : MonoBehaviour
+public class _AudioSettingsController : MonoBehaviour
 {
 
     // [Header("VOLUME")]

@@ -10,18 +10,18 @@ public class TestingScript : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            Debug.Log("E Pressed");
-            audioManager.PlaySFX(audioManager.cursorClickBackOrClose);
-        }
+    // private void Update()
+    // {
+    //     if (Keyboard.current.eKey.wasPressedThisFrame)
+    //     {
+    //         Debug.Log("E Pressed");
+    //         audioManager.PlaySFX(audioManager.cursorClickBackOrClose);
+    //     }
 
-        if (Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            Debug.Log("F Pressed");
-            audioManager.PlayVoice(audioManager.shinraTenseiTest);
-        }
-    }
+    //     if (Keyboard.current.fKey.wasPressedThisFrame)
+    //     {
+    //         Debug.Log("F Pressed");
+    //         audioManager.PlayVoice(audioManager.shinraTenseiTest);
+    //     }
+    // }
 }
