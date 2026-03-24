@@ -4,7 +4,7 @@ public class AudioEventHandler : MonoBehaviour
 {
     public static AudioEventHandler Instance { get; private set; }
 
-    [SerializeField] private AudioManager audioManager;
+    [SerializeField] private AudioPlaybackManager playback;
 
     [SerializeField] private AudioLibrary_SO audioLibrary_SO;
 
@@ -21,21 +21,26 @@ public class AudioEventHandler : MonoBehaviour
 
     void Start()
     {
-        audioManager.PlayMusic(audioLibrary_SO.musicUI.MainMenuBGM);
+        PlayMainMenuMusic();
     }
 
-    public float MasterVolume => audioManager.MasterVolume;
-    public float MusicVolume => audioManager.MusicVolume;
-    public float SFXVolume => audioManager.SFXVolume;
-    public float VoiceVolume => audioManager.VoiceVolume;
-
-    public void SetMasterVolume(float value) => audioManager.SetMasterVolume(value);
-    public void SetMusicVolume(float value) => audioManager.SetMusicVolume(value);
-    public void SetSFXVolume(float value) => audioManager.SetSFXVolume(value);
-    public void SetVoiceVolume(float value) => audioManager.SetVoiceVolume(value);
-
-    public void PlayCursorClick()
+    private void OnEnable()
     {
-        audioManager.PlaySFXRandomizeList(audioLibrary_SO.uiSFX.cursorClickSFX);
+        GameEvents.Subscribe(GameEventKeys.Interact, OnInteractSFX);
     }
+
+    private void OnDisable () {
+        GameEvents.Unsubscribe(GameEventKeys.Interact, OnInteractSFX);
+    }
+
+    // ============================================================================================== //
+
+    public void PlayMainMenuMusic() => playback.PlayMusic(audioLibrary_SO.musicUI.MainMenuBGM);
+    
+
+    // ============================================================================================== //
+
+    public void PlayCursorClickSFX() => playback.PlaySFXRandomizeList(audioLibrary_SO.uiSFX.cursorClickSFX);
+
+    public void OnInteractSFX() => playback.PlaySFXAutoRandomize(audioLibrary_SO.inGameSFX.generalInteractSFX, 0.1f, 0.1f);
 }

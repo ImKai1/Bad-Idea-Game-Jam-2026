@@ -5,10 +5,9 @@ using UnityEngine.Audio;
 
 public class MainMenuController : MonoBehaviour
 {
-    private readonly string _mainScene = "KaisPlayground";
     private void PlayButton()
     {
-        SceneManager.LoadScene(_mainScene);
+        SceneManager.LoadScene(SceneNameKeys.GameplayScene);
     }
 
     private void QuitButton()

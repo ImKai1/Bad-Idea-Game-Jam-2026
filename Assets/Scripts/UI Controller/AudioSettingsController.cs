@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class AudioSettingsController : MonoBehaviour
 {
-    // [SerializeField] private AudioManager audioManager;
     [SerializeField] private Slider masterSlider;
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
@@ -14,10 +13,10 @@ public class AudioSettingsController : MonoBehaviour
     private void Start()
     {
         Debug.Log("AuSetCon");
-        masterSlider.onValueChanged.AddListener(AudioEventHandler.Instance.SetMasterVolume);
-        musicSlider.onValueChanged.AddListener(AudioEventHandler.Instance.SetMusicVolume);
-        sfxSlider.onValueChanged.AddListener(AudioEventHandler.Instance.SetSFXVolume);
-        voiceSlider.onValueChanged.AddListener(AudioEventHandler.Instance.SetVoiceVolume);
+        masterSlider.onValueChanged.AddListener(AudioSettingsManager.Instance.SetMasterVolume);
+        musicSlider.onValueChanged.AddListener(AudioSettingsManager.Instance.SetMusicVolume);
+        sfxSlider.onValueChanged.AddListener(AudioSettingsManager.Instance.SetSFXVolume);
+        voiceSlider.onValueChanged.AddListener(AudioSettingsManager.Instance.SetVoiceVolume);
 
         SyncUI();
         _isInitialized = true;
@@ -31,15 +30,10 @@ public class AudioSettingsController : MonoBehaviour
 
     private void SyncUI()
     {
-        Debug.Log("SyncUI - Master: " + AudioEventHandler.Instance.MasterVolume 
-        + " Music: " + AudioEventHandler.Instance.MusicVolume
-        + " SFX: " + AudioEventHandler.Instance.SFXVolume
-        + " Voice: " + AudioEventHandler.Instance.VoiceVolume);
-
-        masterSlider.SetValueWithoutNotify(AudioEventHandler.Instance.MasterVolume);
-        musicSlider.SetValueWithoutNotify(AudioEventHandler.Instance.MusicVolume);
-        sfxSlider.SetValueWithoutNotify(AudioEventHandler.Instance.SFXVolume);
-        voiceSlider.SetValueWithoutNotify(AudioEventHandler.Instance.VoiceVolume);
+        masterSlider.SetValueWithoutNotify(AudioSettingsManager.Instance.MasterVolume);
+        musicSlider.SetValueWithoutNotify(AudioSettingsManager.Instance.MusicVolume);
+        sfxSlider.SetValueWithoutNotify(AudioSettingsManager.Instance.SFXVolume);
+        voiceSlider.SetValueWithoutNotify(AudioSettingsManager.Instance.VoiceVolume);
     }
 }
 
