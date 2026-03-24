@@ -1,23 +1,24 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class GameLoadSetupScript : MonoBehaviour
+public class _GameLoadSetupScript : MonoBehaviour
 {
     [SerializeField] private AudioMixer masterMixer;
-    DisplaySettingsManagerFix2 displaySetting;
+    _DisplaySettingsManagerFix2 displaySetting;
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        displaySetting = GameObject.FindGameObjectWithTag("Display").GetComponent<DisplaySettingsManagerFix2>();
-        Debug.Log("Awake done");
+        // DontDestroyOnLoad(gameObject);
+        displaySetting = GameObject.FindGameObjectWithTag("Display").GetComponent<_DisplaySettingsManagerFix2>();
+        Debug.Log("Awake1 done");
     }
     void Start()
     {
         InitializeDisplay();
         InitializeVolume();
-        Debug.Log("Start done");
+        Debug.Log("Start1 done");
     }
     public void InitializeDisplay () {
+        Debug.Log("DISPLAY INIT");
         int savedTargetFPS = PlayerPrefs.GetInt("TargetFPS");
         int savedResolution = PlayerPrefs.GetInt("ScreenResolution");
         int savedWindowMode = PlayerPrefs.GetInt("WindowMode");
@@ -32,6 +33,7 @@ public class GameLoadSetupScript : MonoBehaviour
     }
 
     public void InitializeVolume () {
+        Debug.Log("AUDIO INIT");
         float savedMasterVolume = Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MasterVolume", 1), 0.0001f, 1f)) * 20;
         float savedMusicVolume = Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("MusicVolume", 1), 0.0001f, 1f)) * 20;
         float savedSFXVolume = Mathf.Log10(Mathf.Clamp(PlayerPrefs.GetFloat("SFXVolume", 1), 0.0001f, 1f)) * 20;
