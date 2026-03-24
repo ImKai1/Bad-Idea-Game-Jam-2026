@@ -27,35 +27,35 @@ public class AudioPlaybackManager : MonoBehaviour
     }
 
     // ============================================================================================== //
-    internal void PlayMusic(AudioClip clip, bool loop = true)
+    public void PlayMusic(AudioClip clip, bool loop = true)
     {
         musicSource.clip = clip;
         musicSource.loop = loop;
         musicSource.Play();
     }
-    internal void StopMusic()
+    public void StopMusic()
     {
         musicSource.Stop();
     }
 
-    internal void PauseMusic()
+    public void PauseMusic()
     {
         musicSource.Pause();
     }
 
-    internal void ResumeMusic()
+    public void ResumeMusic()
     {
         musicSource.UnPause();
     }
 
     // ============================================================================================== //
 
-    internal void PlaySFXConsistent(AudioClip clip)
+    public void PlaySFXConsistent(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
     }
 
-    internal void PlaySFXAutoRandomize(AudioClip clip, float randomVolumeChange = 0f, float randomPitchChange = 0f)
+    public void PlaySFXAutoRandomize(AudioClip clip, float randomVolumeChange = 0.1f, float randomPitchChange = 0.1f)
     {
         float randomVolumeValue = Random.Range(sfxSource.volume - randomVolumeChange, sfxSource.volume + randomVolumeChange);
         float randomPitchValue = Random.Range(sfxSource.pitch - randomPitchChange, sfxSource.pitch + randomPitchChange);
@@ -66,7 +66,7 @@ public class AudioPlaybackManager : MonoBehaviour
         sfxSource.pitch = originalPitch;
     }
 
-    internal void PlaySFXRandomizeList(AudioClip[] clips, float randomVolumeChange = 0f, float randomPitchChange = 0f)
+    public void PlaySFXRandomizeList(AudioClip[] clips, float randomVolumeChange = 0f, float randomPitchChange = 0f)
     {
         int randomClip = Random.Range(0, clips.Length);
         float randomVolumeValue = Random.Range(sfxSource.volume - randomVolumeChange, sfxSource.volume + randomVolumeChange);
@@ -80,13 +80,13 @@ public class AudioPlaybackManager : MonoBehaviour
 
     // ============================================================================================== //
 
-    internal void PlayVoice(AudioClip clip)
+    public void PlayVoice(AudioClip clip)
     {
         voiceSource.clip = clip;
         voiceSource.Play();
     }
 
-    internal void StopVoice()
+    public void StopVoice()
     {
         voiceSource.Stop();
     }
