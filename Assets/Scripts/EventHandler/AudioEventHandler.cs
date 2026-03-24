@@ -27,10 +27,13 @@ public class AudioEventHandler : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.Subscribe(GameEventKeys.Interact, OnInteractSFX);
+        GameEvents.Subscribe(GameEventKeys.CursorClick, OnCursorClickSFX);
     }
 
-    private void OnDisable () {
+    private void OnDisable()
+    {
         GameEvents.Unsubscribe(GameEventKeys.Interact, OnInteractSFX);
+        GameEvents.Unsubscribe(GameEventKeys.CursorClick, OnCursorClickSFX);
     }
 
     // ============================================================================================== //
@@ -40,7 +43,7 @@ public class AudioEventHandler : MonoBehaviour
 
     // ============================================================================================== //
 
-    public void PlayCursorClickSFX() => playback.PlaySFXRandomizeList(audioLibrary_SO.uiSFX.cursorClickSFX);
+    public void OnCursorClickSFX() => playback.PlaySFXRandomizeList(audioLibrary_SO.uiSFX.cursorClickSFX);
 
     public void OnInteractSFX() => playback.PlaySFXAutoRandomize(audioLibrary_SO.inGameSFX.generalInteractSFX, 0.1f, 0.1f);
 }
