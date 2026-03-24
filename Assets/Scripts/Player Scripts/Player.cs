@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using TMPro;
 
@@ -18,6 +19,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Transform heldObjectPoint;
     private GameObject heldObject;
+
+    private GameObject[] hotbarObjects = new GameObject[3];
+    private int currentHotbarIndex;
+    
     
 
     private GameInput gameInput;
@@ -35,6 +40,18 @@ public class Player : MonoBehaviour
 
         gameInput.OnInteractAction += GameInput_OnInteractAction;
         gameInput.OnMainAction += GameInput_OnMainAction;
+        gameInput.OnHotbarSlotSelected += GameInput_OnHotBarSlotSelected;
+        gameInput.OnHotbarSlotCycled += GameInput_OnHotbarSlotCycled;
+    }
+
+    private void GameInput_OnHotbarSlotCycled(object sender, int increment)
+    {
+        CycleHotbarIndex(increment);
+    }
+
+    private void GameInput_OnHotBarSlotSelected(object sender, int index)
+    {
+        SwitchHotbarSlot(index);
     }
 
     private void GameInput_OnMainAction(object sender, EventArgs e)
@@ -114,6 +131,8 @@ public class Player : MonoBehaviour
             heldObject.GetComponent<Rigidbody>().isKinematic = true;
             heldObject.transform.localPosition = Vector3.zero;
             heldObject.transform.localRotation = Quaternion.identity;
+            hotbarObjects[currentHotbarIndex] = heldObject;
+            Debug.Log("Set object to slot " + currentHotbarIndex);
         }
     }
 
@@ -130,8 +149,47 @@ public class Player : MonoBehaviour
 
             heldObject.GetComponent<Collider>().enabled = true;
             heldObject.transform.SetParent(null);
+            hotbarObjects[currentHotbarIndex] = null;
+            Debug.Log("Removed object from slot " + currentHotbarIndex);
             heldObject = null;
         }
+    }
+
+    private void SwitchHotbarSlot(int index)
+    {
+        Debug.Log("Switch to slot " + index);
+        // if holding something then hide object before switching hotbar slot
+        if(heldObject != null)
+        {
+            heldObject.GetComponent<GrabbableObject>().HideUnselectedHotbarObject();
+            Debug.Log("Hid object in slot " + currentHotbarIndex);
+            heldObject = null;
+        }
+
+        currentHotbarIndex = index;
+
+        //if selected slot already has an object then bring out object
+        if (hotbarObjects[index] != null)
+        {
+            SetHeldObject(hotbarObjects[index]);
+            heldObject.GetComponent<GrabbableObject>().ShowSelectedHotBarObject();
+            Debug.Log("Showed object in slot " + currentHotbarIndex);
+        }
+        
+    }
+
+    private void CycleHotbarIndex(int increment)
+    {
+        Debug.Log("Cycle by " + increment);
+        if (currentHotbarIndex + increment >= 0)
+        {
+            currentHotbarIndex = (currentHotbarIndex + increment) % hotbarObjects.Length;
+        }
+        else
+        {
+            currentHotbarIndex = currentHotbarIndex + increment + hotbarObjects.Length;
+        }
+            SwitchHotbarSlot(currentHotbarIndex);
     }
 
     public bool IsPlayerHoldingObject()

@@ -246,13 +246,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "wischeropp.jonas.hierarchy-active-toggle": {
-      "version": "https://github.com/JonasWischeropp/unity_hierarchy_active_toggle.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "ed978b014efe9ec30e9aa1a4ab5e7399d76889c2"
-    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
