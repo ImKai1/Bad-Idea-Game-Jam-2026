@@ -4,26 +4,26 @@ using UnityEngine;
 public class AudioLibrary_SO : ScriptableObject
 {
     [Header("Music-UI")]
-    public MusicUILibrary musicUI;
+    public UIMusicLibrary musicUI;
 
     [Header("SFX-UI")]
     public UISFXLibrary uiSFX;
 
     [Header("Music-InGame")]
-    public MusicInGameLibrary musicInGame;
+    public InGameMusicLibrary musicInGame;
 
     [Header("SFX-InGame")]
     public InGameSFXLibrary inGameSFX;
 
     [Header("Ambience-InGame")]
-    public AmbienceLibrary ambience;
+    public InGameAmbienceLibrary ambience;
 
     [Header("Voice-CharactersInGame")]
-    public VoiceCharactersInGameLibrary voiceCharactersInGame;
+    public InGameVoiceCharactersLibrary voiceCharactersInGame;
 }
 
 [System.Serializable]
-public class MusicUILibrary
+public class UIMusicLibrary
 {
     public AudioClip MainMenuBGM;
 }
@@ -35,7 +35,7 @@ public class UISFXLibrary
 }
 
 [System.Serializable]
-public class MusicInGameLibrary
+public class InGameMusicLibrary
 {
     public AudioClip potionShopBGM;
 }
@@ -47,13 +47,13 @@ public class InGameSFXLibrary
 }
 
 [System.Serializable]
-public class AmbienceLibrary
+public class InGameAmbienceLibrary
 {
     public AudioClip natureAmbience;
 }
 
 [System.Serializable]
-public class VoiceCharactersInGameLibrary
+public class InGameVoiceCharactersLibrary
 {
     public AudioClip mainCharacterResponse1;
 }

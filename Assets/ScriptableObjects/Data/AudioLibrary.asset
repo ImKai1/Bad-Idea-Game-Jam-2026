@@ -22,7 +22,7 @@ MonoBehaviour:
   musicInGame:
     potionShopBGM: {fileID: 0}
   inGameSFX:
-    generalInteractSFX: {fileID: 0}
+    generalInteractSFX: {fileID: 8300000, guid: 2cc7865d53c6dce44b80270028e1874f, type: 3}
   ambience:
     natureAmbience: {fileID: 0}
   voiceCharactersInGame:
