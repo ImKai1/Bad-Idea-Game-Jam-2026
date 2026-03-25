@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class AudioSettingsManager : MonoBehaviour
+public class _AudioSettingsController : MonoBehaviour
 {
 
     // [Header("VOLUME")]
@@ -17,7 +17,7 @@ public class AudioSettingsManager : MonoBehaviour
     private float sfxVolumeDefaultValue = 1;
     private float voiceVolumeDefaultValue = 1;
 
-    void Start()
+    private void Start()
     {
         masterSlider.value = PlayerPrefs.GetFloat("MasterVolume", masterVolumeDefaultValue);
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", musicVolumeDefaultValue);
