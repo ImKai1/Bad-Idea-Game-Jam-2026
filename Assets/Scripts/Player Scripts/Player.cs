@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     
 
     private GameInput gameInput;
-    private IInteractable currentInteractable;
+    private IInteractable selectedInteractable;
+    private ObjectiveItem selectedObjectiveItem;
 
     private void Awake()
     {
@@ -61,12 +62,17 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
     {
-        if(currentInteractable == null)
+        if(selectedInteractable == null)
         {
             return;
         }   
-        currentInteractable.Interact(this);
+        selectedInteractable.Interact(this);
         
+        if(selectedObjectiveItem == null)
+        {
+            return;
+        }   
+        selectedObjectiveItem.Interact(this);
     }
 
     // Update is called once per frame
@@ -79,28 +85,76 @@ public class Player : MonoBehaviour
             if(hit.transform.TryGetComponent(out IInteractable interactable))
             {
                 // Show interaction UI
-                currentInteractable = interactable;
+                selectedInteractable = interactable;
+                // if(hit.transform.TryGetComponent(out ObjectiveItem objectiveItem))
+                // {
+                //     // Show objective item UI
+                //     selectedObjectiveItem = objectiveItem;
+                // }
             }
             else
             {
-                currentInteractable = null;
+                selectedInteractable = null;
             }
         }
         else
         {
-            currentInteractable = null;
+            selectedInteractable = null;
         }
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactDistance, interactLayerMask))
         {
             if (hit.transform.TryGetComponent(out IInteractable interactable))
             {
                 // Show interaction UI
-                currentInteractable = interactable;
+                selectedInteractable = interactable;
+                if(hit.transform.TryGetComponent(out ObjectiveItem objectiveItem))
+                {
+                    // Show objective item UI
+                    selectedObjectiveItem = objectiveItem;
+                }
+                else
+                {
+                    selectedObjectiveItem = null;
+                }
+            }
+            else
+            {
+                selectedInteractable = null;
+                selectedObjectiveItem = null;
             }
         }
+        else
+        {
+            selectedInteractable = null;
+            selectedObjectiveItem = null;
+        }
         
+        // Manage interaction UI display based on selected interactable and objective item
+        /*
+        if(selectedInteractable == null && selectedObjectiveItem == null)
+        {
+            // Hide interaction UI
+            interactText.text = "";
+            interactTextTransform.localPosition = Vector3.zero;
+            return;
+        } else if ((selectedInteractable != null && selectedObjectiveItem != null) || selectedObjectiveItem != null)
+        {
+            // if both an interactable and objective item are present, prioritize showing the objective UI or if only an objective item is present then show the objective UI
+            interactText.text = selectedObjectiveItem.GetInteractionText(this);
+            interactTextTransform.position = selectedObjectiveItem.GetInteractionPosition(this);
+            interactTextTransform.rotation = Quaternion.identity;
+            interactTextTransform.position = Vector3.MoveTowards(selectedObjectiveItem.GetInteractionPosition(this), Camera.main.transform.position, .5f);
+        } else if (selectedObjectiveItem == null && selectedInteractable != null)
+        {
+            // if only an interactable is present, show the interactable UI
+            interactText.text = selectedInteractable.GetInteractionText(this);
+            interactTextTransform.position = selectedInteractable.GetInteractionPosition(this);
+            interactTextTransform.rotation = Quaternion.identity;
+            interactTextTransform.position = Vector3.MoveTowards(selectedInteractable.GetInteractionPosition(this), Camera.main.transform.position, .5f);
+        }*/
 
-        if (currentInteractable == null)
+        
+        if (selectedInteractable == null)
         {
             // Hide interaction UI
             interactText.text = "";
@@ -108,11 +162,12 @@ public class Player : MonoBehaviour
         }
         else
         {
-            interactText.text = currentInteractable.GetInteractionText();
-            interactTextTransform.position = currentInteractable.GetInteractionPosition();
+            interactText.text = selectedInteractable.GetInteractionText(this);
+            interactTextTransform.position = selectedInteractable.GetInteractionPosition(this);
             interactTextTransform.rotation = Quaternion.identity;
-            interactTextTransform.position = Vector3.MoveTowards(currentInteractable.GetInteractionPosition(), Camera.main.transform.position, .5f);
+            interactTextTransform.position = Vector3.MoveTowards(selectedInteractable.GetInteractionPosition(this), Camera.main.transform.position, .5f);
         }
+        
     }
 
     public void SetHeldObject(GameObject interactObject)
@@ -120,7 +175,7 @@ public class Player : MonoBehaviour
         interactObject.GetComponent<Collider>().enabled = false;
         
         heldObject = interactObject;
-        currentInteractable = null;
+        selectedInteractable = null;
         if (heldObject != null)
         {
             heldObject.transform.SetParent(heldObjectPoint);

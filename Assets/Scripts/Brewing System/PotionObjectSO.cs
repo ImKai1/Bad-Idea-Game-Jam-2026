@@ -7,4 +7,5 @@ public class PotionObjectSO : ScriptableObject
 {
     public string potionName;
     public GameObject potionPrefab;
+    public string couldronInteractionText;
 }
