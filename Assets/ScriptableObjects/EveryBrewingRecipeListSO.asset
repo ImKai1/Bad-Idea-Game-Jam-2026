@@ -15,3 +15,4 @@ MonoBehaviour:
   brewingRecipes:
   - {fileID: 11400000, guid: acae0843a8ea0444687eb49e06aac308, type: 2}
   - {fileID: 11400000, guid: 9728131307fd28645a05be31a24407fc, type: 2}
+  - {fileID: 11400000, guid: cc308b785958a7548b81288dbf242018, type: 2}
