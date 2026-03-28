@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ERP.Discord;
 using UnityEngine;
 
 public class DisplaySettingsManager : MonoBehaviour
