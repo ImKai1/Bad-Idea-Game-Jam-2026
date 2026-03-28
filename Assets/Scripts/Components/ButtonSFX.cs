@@ -6,9 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class ButtonSFX : MonoBehaviour
 {
+    private Button _button;
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(PlaySFX);
+        _button = GetComponent<Button>();
+        _button.onClick.AddListener(PlaySFX);
     }
 
     private void PlaySFX()
