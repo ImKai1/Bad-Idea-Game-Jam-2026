@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.handzlikchris.fastscriptreload": {
+      "version": "https://github.com/handzlikchris/FastScriptReload.git?path=Assets",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2018c7615df46777b03b9a87304b65d14e9d0823"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -120,11 +127,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.2",
+    "com.unity.postprocessing": {
+      "version": "3.5.1",
       "depth": 0,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
@@ -243,6 +252,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "wischeropp.jonas.hierarchy-active-toggle": {
+      "version": "https://github.com/JonasWischeropp/unity_hierarchy_active_toggle.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ed978b014efe9ec30e9aa1a4ab5e7399d76889c2"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

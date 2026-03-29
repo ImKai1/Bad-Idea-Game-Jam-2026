@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e11b3fc03f557724796b541bf12b5814, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary_SO
+  musicUI:
+    MainMenuBGM: {fileID: 8300000, guid: e659c29217de12045aa96a5fada52cb2, type: 3}
+  uiSFX:
+    cursorClickSFX:
+    - {fileID: 8300000, guid: 693cdb9f08fe59844804a2fb2088116a, type: 3}
+    - {fileID: 8300000, guid: 699fee528f5f3034c93c139277503600, type: 3}
+    - {fileID: 8300000, guid: 9bc05c5501893b7468530ec9606c88ee, type: 3}
+  musicInGame:
+    potionShopBGM: {fileID: 0}
+  inGameSFX:
+    generalInteractSFX: {fileID: 8300000, guid: 2cc7865d53c6dce44b80270028e1874f, type: 3}
+  ambience:
+    natureAmbience: {fileID: 0}
+  voiceCharactersInGame:
+    mainCharacterResponse1: {fileID: 0}
