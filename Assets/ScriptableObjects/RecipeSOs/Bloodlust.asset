@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acb32f3804d4d354a8f1551e12b48388, type: 3}
-  m_Name: Purge I
-  m_EditorClassIdentifier: Assembly-CSharp::BrewingIngredientSO
-  ingredientName: Purge I
-  ingredientWeight: 0
+  m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
+  m_Name: Bloodlust
+  m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
+  brewingIngredients: []
+  recipePotionObjectSO: {fileID: 0}
