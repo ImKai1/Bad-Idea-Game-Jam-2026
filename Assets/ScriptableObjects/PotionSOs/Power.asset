@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Power
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Power I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 94c8a318032ac644dbfbf44a173d4589, type: 3}
   couldronInteractionText: 

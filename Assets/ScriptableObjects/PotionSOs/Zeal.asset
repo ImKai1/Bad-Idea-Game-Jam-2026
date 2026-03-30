@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Zeal
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Zeal I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 709faafa7cf074e4081da037592525eb, type: 3}
   couldronInteractionText: 

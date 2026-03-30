@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Holy Light
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Holy Light I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: d62820b7567da5e4c976e6b3d5ea4166, type: 3}
   couldronInteractionText: 

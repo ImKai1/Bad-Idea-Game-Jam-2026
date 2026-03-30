@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Fervor
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Fervor I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 079637256bb3f3c41a9f120783cd8f2e, type: 3}
   couldronInteractionText: 

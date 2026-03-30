@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Divine Light
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Divine Light I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 7303a550a8c0c3245a4b9ed328963650, type: 3}
   couldronInteractionText: 

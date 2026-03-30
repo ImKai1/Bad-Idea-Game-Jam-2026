@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Purge
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Purge I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 5ac8e5cfd0c93af438cbd280c4d7dab8, type: 3}
   couldronInteractionText: 

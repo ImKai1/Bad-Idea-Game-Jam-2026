@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bloodlust
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Bloodlust I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: a2fad0c9574ed044a9f3702780c00097, type: 3}
   couldronInteractionText: 

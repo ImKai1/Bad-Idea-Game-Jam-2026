@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Strength
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Strength I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: 6a61f04d523dc7340931101a9aee81a9, type: 3}
   couldronInteractionText: 

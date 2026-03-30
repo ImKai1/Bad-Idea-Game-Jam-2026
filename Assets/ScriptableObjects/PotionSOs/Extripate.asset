@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Extripate
   m_EditorClassIdentifier: Assembly-CSharp::PotionObjectSO
   potionName: Extripate I
-  potionPrefab: {fileID: 0}
+  potionPrefab: {fileID: 5790224170780659148, guid: c11d03a304b438d42b8845a30b313e1b, type: 3}
   couldronInteractionText: 
