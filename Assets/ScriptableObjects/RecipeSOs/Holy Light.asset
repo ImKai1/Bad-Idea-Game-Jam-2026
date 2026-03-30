@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Holy Light
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 7225ed53d0a283249ad64c349bf77b09, type: 2}
+  - {fileID: 11400000, guid: 854d8ebb462bafa43a50d27529049825, type: 2}
+  - {fileID: 11400000, guid: 0b1e0b4593d920145be1ecd4f0654dd2, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: dfe287d2a37f21c4c81305e6ea3252ed, type: 2}

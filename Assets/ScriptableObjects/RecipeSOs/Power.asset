@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Power
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 843852ec9229f604a981fdf6c2b5450f, type: 2}
+  - {fileID: 11400000, guid: 458cd2ced80e74c4ba208c0b36217d70, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: 327baf8890fcc4b469624f1621f509ef, type: 2}

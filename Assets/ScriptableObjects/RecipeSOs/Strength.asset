@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7225ed53d0a283249ad64c349bf77b09, type: 2}
   - {fileID: 11400000, guid: 91221f1f1a120ea46a90d48279c46034, type: 2}
   - {fileID: 11400000, guid: ef241da507ab02942b4a0e4ea2491bd3, type: 2}
-  recipePotionObjectSO: {fileID: 0}
+  recipePotionObjectSO: {fileID: 11400000, guid: 331e5d7722981ac48b25a38d521d440f, type: 2}

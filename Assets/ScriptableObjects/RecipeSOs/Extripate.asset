@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Extripate
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: a6da8a427b852d544a1a3d7781f40d7f, type: 2}
+  - {fileID: 11400000, guid: 0b1e0b4593d920145be1ecd4f0654dd2, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: ffdc46c4860b7814dbbb47b8a0fe3100, type: 2}

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Ferocity
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 7225ed53d0a283249ad64c349bf77b09, type: 2}
+  - {fileID: 11400000, guid: 59264bda5b13612468fd7f9abc105384, type: 2}
+  - {fileID: 11400000, guid: 9e68aac426eddb245a85e15f05234f54, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: 49ea97a187ab4da4ca1f2a4d94035b2e, type: 2}

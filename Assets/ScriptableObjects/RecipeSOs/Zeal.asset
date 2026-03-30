@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Zeal
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 2fc3c7997bca5a2479267a323c6e17f7, type: 2}
+  - {fileID: 11400000, guid: b71aecc18acd6494a85319a770feb6ee, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: e5b007f39ea1008499bd5433b5ac5467, type: 2}

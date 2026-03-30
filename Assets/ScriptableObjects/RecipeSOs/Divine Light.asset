@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Divine Light
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 0269a6afb5905234dae4a9b586507fd2, type: 2}
+  - {fileID: 11400000, guid: 94dbba75e6c421249850574e29b234ec, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: f3c82a7b80131d54e8648638e89e080e, type: 2}

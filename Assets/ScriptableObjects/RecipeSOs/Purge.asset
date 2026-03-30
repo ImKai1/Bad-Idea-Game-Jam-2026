@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Purge
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 7225ed53d0a283249ad64c349bf77b09, type: 2}
+  - {fileID: 11400000, guid: e3a419e3c1dae0443a3bfc98bdc65c59, type: 2}
+  - {fileID: 11400000, guid: 5e0dcadb81973414db30f4253477060c, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: bb37c39995aca1f48a01cda171197246, type: 2}

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Swiftness
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 7225ed53d0a283249ad64c349bf77b09, type: 2}
+  - {fileID: 11400000, guid: 55b71fe4bb6bdac418b310b3684f8a84, type: 2}
+  - {fileID: 11400000, guid: cad18fb3e3ca3594d93f6aff086a911b, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: 0c8ff6c6704f4a845bd26fbdf94e83d9, type: 2}

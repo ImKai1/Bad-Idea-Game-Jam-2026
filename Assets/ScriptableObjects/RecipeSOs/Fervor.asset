@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ac8bda716e5134f8312a2bdd43eb1d, type: 3}
   m_Name: Fervor
   m_EditorClassIdentifier: Assembly-CSharp::BrewingRecipeSO
-  brewingIngredients: []
-  recipePotionObjectSO: {fileID: 0}
+  brewingIngredients:
+  - {fileID: 11400000, guid: 2df5a2a1027f7094b822f6434afa45a9, type: 2}
+  - {fileID: 11400000, guid: bfe820157f6d9db48ad79b93c834387a, type: 2}
+  recipePotionObjectSO: {fileID: 11400000, guid: 59f080cc5a641004bb6c22fbaaac8851, type: 2}
