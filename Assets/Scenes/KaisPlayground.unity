@@ -9628,6 +9628,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 573d57cd13208a243abea987e408f58b, type: 3}
   m_PrefabInstance: {fileID: 1792553110}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1464573412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6399788742419806999, guid: e0dc1bd25ab210841af3bb565bceccc6, type: 3}
+  m_PrefabInstance: {fileID: 604603534877381750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1464573417 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3661437790172513293, guid: e0dc1bd25ab210841af3bb565bceccc6, type: 3}
@@ -14034,8 +14039,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2391203380239174093, guid: afe8d595f1f3c454d897bcc5400a5900, type: 3}
       propertyPath: m_Name
-      value: Object Spawner
+      value: Book Spawner
       objectReference: {fileID: 0}
+    - target: {fileID: 4075701936114512307, guid: afe8d595f1f3c454d897bcc5400a5900, type: 3}
+      propertyPath: objectToSpawnPrefab
+      value: 
+      objectReference: {fileID: 1464573412}
     - target: {fileID: 5371585473441050001, guid: afe8d595f1f3c454d897bcc5400a5900, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.356
