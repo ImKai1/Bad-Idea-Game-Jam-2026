@@ -20,7 +20,7 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
-    private GameInput gameInput;
+    
 
     #region Camera Movement Variables
 
@@ -62,6 +62,7 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
+    public GameInput gameInput;
 
     // Internal Variables
     private bool isWalking = false;
@@ -151,6 +152,8 @@ public class FirstPersonController : MonoBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
+
+        gameInput = GameInput.Instance;
     }
 
     void Start()

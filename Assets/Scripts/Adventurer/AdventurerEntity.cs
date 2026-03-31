@@ -106,6 +106,6 @@ public class AdventurerEntity : MonoBehaviour, ITradeManager, IInteractable
         // idk, put stuff here
     }
 
-    public string GetInteractionText() { return "Talk to Adventurer"; }
-    public Vector3 GetInteractionPosition() { return Vector3.zero; }
+    public string GetInteractionText(Player player) { return "Talk to Adventurer"; }
+    public Vector3 GetInteractionPosition(Player player) { return Vector3.zero; }
 }

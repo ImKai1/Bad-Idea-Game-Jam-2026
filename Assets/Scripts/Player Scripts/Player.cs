@@ -88,11 +88,11 @@ public class Player : MonoBehaviour
                 {
                     // Show interaction UI
                     Debug.Log("Looking at " + interactable);
-                    currentInteractable = interactable;
+                    selectedInteractable = interactable;
                 }
                 else
                 {
-                    currentInteractable = null;
+                    selectedInteractable = null;
                 }
 
                 // Need to properly implement sell/buy mechanics
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
                 //}
 
                 // Show interaction UI
-                selectedInteractable = interactable;
+                //selectedInteractable = interactable;
                 // if(hit.transform.TryGetComponent(out ObjectiveItem objectiveItem))
                 // {
                 //     // Show objective item UI

@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +28,8 @@ public class JsonExample : MonoBehaviour
 
     public void SaveData() // call function to save data to the json
     {
-        string json = JsonConvert.SerializeObject(list, Formatting.Indented);
+        
+        string json = JsonUtility.ToJson(list); //; JsonConvert.SerializeObject(list, Formatting.Indented);
         File.WriteAllText(path, json);
     }
     public void LoadData() // Load the settings from the json
@@ -36,7 +37,8 @@ public class JsonExample : MonoBehaviour
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
-            list = JsonConvert.DeserializeObject<List<string>>(json);
+            //JsonUtility.FromJson
+            list = JsonUtility.FromJson<List<string>>(json);//JsonConvert.DeserializeObject<List<string>>(json);
         }
         else
         {
