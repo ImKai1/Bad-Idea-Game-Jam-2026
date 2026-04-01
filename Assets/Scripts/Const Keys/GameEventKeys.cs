@@ -1,5 +1,6 @@
 public static class GameEventKeys
 {
+    public const string GameplayLoaded = "GameplayLoaded";
     public const string Interact = "Interact";
     public const string CursorClick = "CursorClick";
     public const string PickUpGeneral = "PickUpGeneral";

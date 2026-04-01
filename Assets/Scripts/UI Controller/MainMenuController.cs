@@ -9,6 +9,7 @@ public class MainMenuController : MonoBehaviour
     private void PlayButton()
     {
         SceneManager.LoadScene(SceneNameKeys.GameplayScene);
+        GameEvents.Fire(GameEventKeys.GameplayLoaded);
     }
 
     private void QuitButton()

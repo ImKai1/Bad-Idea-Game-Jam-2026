@@ -26,6 +26,7 @@ public class AudioEventHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEvents.Subscribe(GameEventKeys.GameplayLoaded, OngameplayLoad);
         GameEvents.Subscribe(GameEventKeys.CursorClick, OnCursorClickSFX);
         GameEvents.Subscribe(GameEventKeys.PickUpGeneral, OnPickUpGeneralSFX);
         GameEvents.Subscribe(GameEventKeys.Interact, OnInteractSFX);
@@ -36,6 +37,7 @@ public class AudioEventHandler : MonoBehaviour
 
     private void OnDisable()
     {
+        GameEvents.Unsubscribe(GameEventKeys.GameplayLoaded, OngameplayLoad);
         GameEvents.Unsubscribe(GameEventKeys.CursorClick, OnCursorClickSFX);
         GameEvents.Unsubscribe(GameEventKeys.PickUpGeneral, OnPickUpGeneralSFX);
         GameEvents.Unsubscribe(GameEventKeys.Interact, OnInteractSFX);
@@ -47,6 +49,7 @@ public class AudioEventHandler : MonoBehaviour
     // ============================================================================================== //
 
     public void PlayMainMenuMusic() => playback.PlayMusic(audioLibrary_SO.musicUI.MainMenuBGM);
+    public void OngameplayLoad() => playback.PlayMusic(audioLibrary_SO.musicUI.GameplayBGM);
     
 
     // ============================================================================================== //

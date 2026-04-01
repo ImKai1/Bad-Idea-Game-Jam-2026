@@ -26,6 +26,7 @@ public class AudioLibrary_SO : ScriptableObject
 public class UIMusicLibrary
 {
     public AudioClip MainMenuBGM;
+    public AudioClip GameplayBGM;
 }
 
 [System.Serializable]
