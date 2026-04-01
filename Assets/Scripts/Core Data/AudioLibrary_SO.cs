@@ -16,7 +16,7 @@ public class AudioLibrary_SO : ScriptableObject
     public InGameSFXLibrary inGameSFX;
 
     [Header("Ambience-InGame")]
-    public InGameAmbienceLibrary ambience;
+    public InGameAmbienceLibrary inGameAmbience;
 
     [Header("Voice-CharactersInGame")]
     public InGameVoiceCharactersLibrary voiceCharactersInGame;
@@ -43,13 +43,21 @@ public class InGameMusicLibrary
 [System.Serializable]
 public class InGameSFXLibrary
 {
+    public AudioClip[] pickup;
+    public AudioClip[] waterDrop;
     public AudioClip generalInteractSFX;
+    public AudioClip bottlePickUp;
+    public AudioClip bottlePutDown;
+    public AudioClip coinSFX;
+    public AudioClip coinExchange;
 }
 
 [System.Serializable]
 public class InGameAmbienceLibrary
 {
-    public AudioClip natureAmbience;
+    public AudioClip stoneWalk;
+    public AudioClip dirtWalk;
+    public AudioClip cauldronConstantBoiling;
 }
 
 [System.Serializable]

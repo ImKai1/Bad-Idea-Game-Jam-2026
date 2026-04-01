@@ -12,6 +12,7 @@ public class AudioPlaybackManager : MonoBehaviour
     [SerializeField] private AudioSource masterSource;
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource ambienceSource;
     [SerializeField] private AudioSource voiceSource;
 
     private void Awake()
@@ -76,6 +77,14 @@ public class AudioPlaybackManager : MonoBehaviour
         sfxSource.pitch = randomPitchValue;
         sfxSource.PlayOneShot(clips[randomClip], randomVolumeValue);
         sfxSource.pitch = originalPitch;
+    }
+
+    // ============================================================================================== //\
+
+    public void PlayAmbience (AudioClip clip) {
+        ambienceSource.clip = clip;
+        ambienceSource.loop = true;
+        ambienceSource.Play();
     }
 
     // ============================================================================================== //
