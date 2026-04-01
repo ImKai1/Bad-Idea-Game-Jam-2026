@@ -28,11 +28,16 @@ public class BrewingCouldron : InteractableObject, IInteractable
         currentBrewingIngredients = new List<BrewingIngredient>();
         couldronCollider = GetComponent<Collider>();
         couldronCollider.enabled = false;
+        GameEvents.Fire(GameEventKeys.CauldronStart);
     }
 
     private void Update()
     {
         
+    }
+
+    void OnEnable()
+    {
     }
 
     public void TryAddIngredient(BrewingIngredient brewingIngredient)

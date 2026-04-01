@@ -22,8 +22,7 @@ public static class SceneLoader
         if (SceneManager.GetActiveScene().name == SceneNameKeys.BootstrapScene)
         {
             SceneManager.LoadScene(SceneNameKeys.MainMenuScene, LoadSceneMode.Additive);
-            SceneManager.SetActiveScene(
-                SceneManager.GetSceneByName(SceneNameKeys.MainMenuScene));
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneNameKeys.MainMenuScene));
         }
     }
 

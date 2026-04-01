@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary_SO
   musicUI:
-    MainMenuBGM: {fileID: 8300000, guid: e659c29217de12045aa96a5fada52cb2, type: 3}
+    MainMenuBGM: {fileID: 8300000, guid: 0a43bbded2b16ec4da55682b3082ff9a, type: 3}
   uiSFX:
     cursorClickSFX:
     - {fileID: 8300000, guid: 693cdb9f08fe59844804a2fb2088116a, type: 3}
@@ -22,8 +22,21 @@ MonoBehaviour:
   musicInGame:
     potionShopBGM: {fileID: 0}
   inGameSFX:
+    pickup:
+    - {fileID: 8300000, guid: 5374b718cbbe1774799a33a66a46c829, type: 3}
+    - {fileID: 8300000, guid: a9e8cf54e9a5efd4ea95efd9b9d33fa7, type: 3}
+    - {fileID: 8300000, guid: 5e1bf417143a702439576d989fd3a95e, type: 3}
+    waterDrop:
+    - {fileID: 8300000, guid: 2fec0b423cb79cc41af41a5e8e67888f, type: 3}
+    - {fileID: 8300000, guid: 76d51afee6dbb1d40bf7d84334acffcc, type: 3}
     generalInteractSFX: {fileID: 8300000, guid: 2cc7865d53c6dce44b80270028e1874f, type: 3}
+    bottlePickUp: {fileID: 8300000, guid: 8bf64a362a9cf544daf76c5f4d629a7c, type: 3}
+    bottlePutDown: {fileID: 8300000, guid: 316b2348bcef1a844ae9bc94ddaae49a, type: 3}
+    coinSFX: {fileID: 8300000, guid: c3ec688be852ff74e90592e85f03cd85, type: 3}
+    coinExchange: {fileID: 8300000, guid: b46eb91bfff751d469112dcd8788873a, type: 3}
   ambience:
-    natureAmbience: {fileID: 0}
+    stoneWalk: {fileID: 8300000, guid: 208162d51c0d55941ac709a4516bd3be, type: 3}
+    dirtWalk: {fileID: 8300000, guid: 0d1629a31c237bf4fa0c4f0d2f8689a2, type: 3}
+    cauldronConstantBoiling: {fileID: 8300000, guid: 9f9733cfc82596541bcfa8c599711977, type: 3}
   voiceCharactersInGame:
     mainCharacterResponse1: {fileID: 0}
